@@ -1,0 +1,502 @@
+{
+  "schemaVersion": "1.0.0",
+  "city": {
+    "nameZh": "善心之城",
+    "nameEn": "Kindness City",
+    "mottoZh": "命好不如習慣好",
+    "mottoEn": "Good habits matter more than good fortune.",
+    "coreVision": "Technology is only an enabler. Good habits create lasting success. Programming helps children cultivate positive thinking, discipline, creativity, perseverance, compassion, and responsibility.",
+    "threeLoves": [
+      {
+        "id": "self",
+        "labelZh": "爱自己",
+        "labelEn": "Love Yourself",
+        "color": "#52E5C7",
+        "focus": "Positive thinking, daily discipline, calm debugging, and lifelong curiosity."
+      },
+      {
+        "id": "others",
+        "labelZh": "爱别人",
+        "labelEn": "Love Others",
+        "color": "#F2B857",
+        "focus": "Compassion, teamwork, listening carefully, and building helpful tools for neighbors."
+      },
+      {
+        "id": "earth",
+        "labelZh": "爱地球",
+        "labelEn": "Love the Earth",
+        "color": "#8CE563",
+        "focus": "Responsibility, ecological stewardship, clean water, renewable energy, and living forests."
+      }
+    ]
+  },
+  "districts": [
+    {
+      "id": "welcome-plaza",
+      "nameEn": "Welcome Plaza",
+      "nameZh": "迎賓廣場",
+      "elevation": "2,200m · Front Gate",
+      "love": "self",
+      "unlockAt": 0.08,
+      "image": "assets/pan-00-welcome-plaza.webp",
+      "pythonTheme": "First Output & Clear Intention",
+      "habitTheme": "Welcoming Curiosity & Good Routine",
+      "ecoElements": ["Rainwater Harvesting Fountain", "Green Buildings", "Bicycle Paths"],
+      "description": "Every adventure starts at the carved cedar Welcome Plaza, where students step off daily autopilot beside rainwater fountains and shaded bike lanes.",
+      "actAnchor": "#act-watershed"
+    },
+    {
+      "id": "function-mountain",
+      "nameEn": "Function Mountain",
+      "nameZh": "函式山嶺",
+      "elevation": "2,400m · Summit",
+      "love": "self",
+      "unlockAt": 0.0,
+      "image": "assets/01-poster.webp",
+      "pythonTheme": "Functions & Modular Thinking",
+      "habitTheme": "Purpose & Long-Term Perspective",
+      "ecoElements": ["Clean River Source", "Solar Panels", "Wildlife Habitat"],
+      "description": "High above the mist stands the brass observatory atop Function Mountain, organizing small repeatable helper routines that feed clear water downstream.",
+      "actAnchor": "#act-summit"
+    },
+    {
+      "id": "curiosity-park",
+      "nameEn": "Curiosity Park",
+      "nameZh": "好奇心公園",
+      "elevation": "1,940m · High Ridge",
+      "love": "self",
+      "unlockAt": 0.14,
+      "image": "assets/pan-06-curiosity-park.webp",
+      "pythonTheme": "Syntax Exploration & Comments",
+      "habitTheme": "Wonder, Questions & Calm Observation",
+      "ecoElements": ["Wildlife Habitat", "Tree Planting Area"],
+      "description": "Botanical boardwalks and brass lenses invite learners to ask bold questions, trace how ecosystems connect, and document every discovery clearly.",
+      "actAnchor": "#act-watershed"
+    },
+    {
+      "id": "green-energy-station",
+      "nameEn": "Green Energy Station",
+      "nameZh": "綠能驛站 · 竹水車",
+      "elevation": "1,650m · Gorge Aqueduct",
+      "love": "earth",
+      "unlockAt": 0.20,
+      "image": "assets/pan-01-waterwheel.webp",
+      "pythonTheme": "Steady Loops & Renewable Cycles",
+      "habitTheme": "Consistency Over Luck",
+      "ecoElements": ["Solar Panels", "Wind Turbines", "Clean River Hydro"],
+      "description": "Crafted beside the Bamboo Waterwheel, ridge-top wind turbines and tiled solar eaves transform natural sunlight and river flow into clean city power.",
+      "actAnchor": "#act-watershed"
+    },
+    {
+      "id": "earth-garden",
+      "nameEn": "Earth Garden",
+      "nameZh": "大地花園 · 梯田育苗園",
+      "elevation": "1,560m · Terraced Hills",
+      "love": "earth",
+      "unlockAt": 0.25,
+      "image": "assets/pan-02-nurseries.webp",
+      "pythonTheme": "Variables & Soil Sensing",
+      "habitTheme": "Patience & Nurturing Growth",
+      "ecoElements": ["Tree Planting Area", "Community Garden", "Rainwater Harvesting"],
+      "description": "Stepped contour seedling beds fed by bamboo flumes store every monsoon drop carefully before returning clear water to the watershed below.",
+      "actAnchor": "#act-watershed"
+    },
+    {
+      "id": "variable-village",
+      "nameEn": "Variable Village",
+      "nameZh": "變數村",
+      "elevation": "1,480m · Timber Slope",
+      "love": "self",
+      "unlockAt": 0.30,
+      "image": "assets/pan-05-solvers.webp",
+      "pythonTheme": "Variables, Naming & State Practice",
+      "habitTheme": "Orderliness & Self-Awareness",
+      "ecoElements": ["Bicycle Paths", "Green Buildings", "Community Garden"],
+      "description": "Solar-roofed timber cottages linked by shaded bicycle lanes where citizens learn how clear names keep household supplies and code dependable.",
+      "actAnchor": "#act-watershed"
+    },
+    {
+      "id": "loop-river",
+      "nameEn": "Loop River",
+      "nameZh": "迴圈河",
+      "elevation": "1,410m · Valley Bend",
+      "love": "earth",
+      "unlockAt": 0.35,
+      "image": "assets/pan-03-loop-river.webp",
+      "pythonTheme": "For Loops & Continuous Iteration",
+      "habitTheme": "Perseverance & Steady Reflection",
+      "ecoElements": ["Clean River", "Wildlife Habitat", "Rainwater Harvesting"],
+      "description": "An S-curve waterway filtered by river reeds and stone shoals that teaches students how thoughtful repetition keeps both creeks and skills pure.",
+      "actAnchor": "#act-watershed"
+    },
+    {
+      "id": "friendship-square",
+      "nameEn": "Friendship Square",
+      "nameZh": "友誼廣場 · 小慈",
+      "elevation": "1,350m · Veranda Way",
+      "love": "others",
+      "unlockAt": 0.40,
+      "image": "assets/pan-04-little-ci.webp",
+      "pythonTheme": "Reusable Care Routines & Lists",
+      "habitTheme": "Compassion, Service & Teamwork",
+      "ecoElements": ["Community Garden", "Bicycle Paths"],
+      "description": "Neighborly verandas where Little Ci care-bots help children water roses for elders and deliver warm tea without replacing human kindness.",
+      "actAnchor": "#act-watershed"
+    },
+    {
+      "id": "coding-academy",
+      "nameEn": "Coding Academy",
+      "nameZh": "編碼學院",
+      "elevation": "1,280m · Civic Terrace",
+      "love": "self",
+      "unlockAt": 0.45,
+      "image": "assets/flow-coding-academy.webp",
+      "pythonTheme": "Core Python Craft & Debugging",
+      "habitTheme": "Positive Thinking & Problem-Solving",
+      "ecoElements": ["Green Buildings", "Solar Panels", "Clean River View"],
+      "description": "Open cedar studios overlooking the bamboo gorge where programming serves strictly as an enabler for empathy, honesty, and practical wisdom.",
+      "actAnchor": "#stop-coding-academy"
+    },
+    {
+      "id": "data-district",
+      "nameEn": "Data District",
+      "nameZh": "資料區",
+      "elevation": "1,240m · Civic Terrace",
+      "love": "self",
+      "unlockAt": 0.49,
+      "image": "assets/flow-data-district.webp",
+      "pythonTheme": "Data Types, Lists & Operators",
+      "habitTheme": "Clarity, Honesty & Truthful Observation",
+      "ecoElements": ["Clean River Gauges", "Green Buildings"],
+      "description": "River telemetry bells and type-classification workbenches help young detectives measure rainfall accurately instead of guessing blindly.",
+      "actAnchor": "#stop-data-district"
+    },
+    {
+      "id": "logic-forest",
+      "nameEn": "Logic Forest",
+      "nameZh": "邏輯森林",
+      "elevation": "1,180m · Old Growth Grove",
+      "love": "others",
+      "unlockAt": 0.53,
+      "image": "assets/flow-logic-forest.webp",
+      "pythonTheme": "Booleans, If / Else Choices",
+      "habitTheme": "Wise Decision-Making & Responsibility",
+      "ecoElements": ["Tree Planting Area", "Wildlife Habitat"],
+      "description": "Quiet branching woodland trails under tall pines where learners trace conditions step by step to choose the safest, kindest fork.",
+      "actAnchor": "#stop-logic-forest"
+    },
+    {
+      "id": "recycling-center",
+      "nameEn": "Recycling Center",
+      "nameZh": "生態資源回收站",
+      "elevation": "1,120m · Civic Courtyard",
+      "love": "earth",
+      "unlockAt": 0.57,
+      "image": "assets/flow-recycling-pavilion.webp",
+      "pythonTheme": "Conditional Sorting & Classification",
+      "habitTheme": "Zero-Waste Stewardship",
+      "ecoElements": ["Recycling Center", "Green Buildings", "Rainwater Harvesting"],
+      "description": "Beneath a flowering moss-and-fern living roof, families sort paper, glass, compost, metal, and timber so nothing helpful ever becomes trash.",
+      "actAnchor": "#stop-recycling-center"
+    },
+    {
+      "id": "creativity-workshop",
+      "nameEn": "Creativity Workshop",
+      "nameZh": "創意工坊",
+      "elevation": "1,060m · Plaza Rim",
+      "love": "self",
+      "unlockAt": 0.61,
+      "image": "assets/flow-creativity-workshop.webp",
+      "pythonTheme": "Interactive Input & Timing Art",
+      "habitTheme": "Originality & Joyful Experimentation",
+      "ecoElements": ["Bicycle Paths", "Solar Panels"],
+      "description": "A sunlit timber studio where students blend time delays, storytelling input, and hand sketches to prototype helpful inventions for neighbors.",
+      "actAnchor": "#stop-creativity-workshop"
+    },
+    {
+      "id": "innovation-tower",
+      "nameEn": "Innovation Tower",
+      "nameZh": "創新之塔",
+      "elevation": "1,010m · Plaza Approach",
+      "love": "earth",
+      "unlockAt": 0.65,
+      "image": "assets/flow-innovation-tower.webp",
+      "pythonTheme": "Python AI & Ethical Stewardship",
+      "habitTheme": "All Three Loves In Harmony",
+      "ecoElements": ["Green Buildings", "Tree Planting Area", "Solar Bio-Canopy"],
+      "description": "Rising above clean water channels before the central Bio-Canopy, this living cedar pagoda unites solar eave craft with humane AI stewardship.",
+      "actAnchor": "#stop-innovation-tower"
+    },
+    {
+      "id": "celebration-hall",
+      "nameEn": "Celebration Hall",
+      "nameZh": "慶典大廳 · 迎向未來",
+      "elevation": "120m · Lotus Estuary",
+      "love": "others",
+      "unlockAt": 0.86,
+      "image": "assets/05-celebration-hall.webp",
+      "pythonTheme": "Real-World Projects & Sharing",
+      "habitTheme": "Gratitude, Belonging & Lasting Action",
+      "ecoElements": ["Clean River", "Wildlife Habitat", "Community Garden"],
+      "description": "Across twin bridges over the blooming pink lotus pond, every completed lesson illuminates a celebratory lantern that brightens all of Kindness City.",
+      "actAnchor": "#act-celebration"
+    }
+  ],
+  "chapters": [
+    {
+      "id": "chapter-1",
+      "order": 1,
+      "title": "Chapter I · Stepping Through the Gate",
+      "subtitle": "Foundations, Voice & Intentional Craft",
+      "districtIds": ["welcome-plaza", "coding-academy", "curiosity-park"],
+      "districtLabel": "Welcome Plaza · Coding Academy · Curiosity Park",
+      "love": "self",
+      "unlockAt": 0.0,
+      "summary": "Begin the adventure by speaking clearly to the computer and organizing clean, respectful habits before writing larger programs.",
+      "lessons": [
+        {
+          "number": 1,
+          "code": "L01",
+          "title": "Python + print()",
+          "branch": "module/l1_pyprint",
+          "districtId": "welcome-plaza",
+          "love": "self",
+          "pythonConcept": "print() output strings and greeting messages",
+          "positiveHabit": "Positive Thinking: Speak encouraging words to yourself and others at the start of every task."
+        },
+        {
+          "number": 2,
+          "code": "L02",
+          "title": "Coding Environment + Function + Comment",
+          "branch": "module/l2_env_func_comment",
+          "districtId": "coding-academy",
+          "love": "self",
+          "pythonConcept": "Workspace setup, starter functions, and # comments",
+          "positiveHabit": "Discipline: Keep tools neat and leave thoughtful explanations so teammates can follow easily."
+        }
+      ]
+    },
+    {
+      "id": "chapter-2",
+      "order": 2,
+      "title": "Chapter II · Naming & Observing Our World",
+      "subtitle": "Memory Containers, Measurements & Truthful Types",
+      "districtIds": ["variable-village", "earth-garden", "data-district"],
+      "districtLabel": "Variable Village · Earth Garden · Data District",
+      "love": "earth",
+      "unlockAt": 0.18,
+      "summary": "Learn how clean variable names and accurate data types mirror caring stewardship across nurseries, rainfall basins, and stream gauges.",
+      "lessons": [
+        {
+          "number": 3,
+          "code": "L03",
+          "title": "Variable",
+          "branch": "module/l3_variable",
+          "districtId": "variable-village",
+          "love": "self",
+          "pythonConcept": "Assigning clear, memorable variable labels",
+          "positiveHabit": "Orderliness: Label what matters clearly so nothing gets lost or wasted."
+        },
+        {
+          "number": 4,
+          "code": "L04",
+          "title": "Variable Practice",
+          "branch": "module/l4_var_practice",
+          "districtId": "earth-garden",
+          "love": "earth",
+          "pythonConcept": "Updating variables as saplings and water levels change",
+          "positiveHabit": "Patient Stewardship: Notice small daily growth in gardens and good routines."
+        },
+        {
+          "number": 5,
+          "code": "L05",
+          "title": "Data Types",
+          "branch": "module/l5_data_types",
+          "districtId": "data-district",
+          "love": "earth",
+          "pythonConcept": "Integers, floats, strings, and booleans",
+          "positiveHabit": "Honest Observation: Measure the world accurately before jumping to conclusions."
+        },
+        {
+          "number": 6,
+          "code": "L06",
+          "title": "Data Type Detective",
+          "branch": "module/l6_datatype_detective",
+          "districtId": "curiosity-park",
+          "love": "self",
+          "pythonConcept": "Inspecting and converting mismatched data with type()",
+          "positiveHabit": "Curiosity & Problem-Solving: Investigate errors calmly instead of giving up."
+        }
+      ]
+    },
+    {
+      "id": "chapter-3",
+      "order": 3,
+      "title": "Chapter III · Clear Arithmetic & Kind Choices",
+      "subtitle": "Comparing Facts, Sorting Streams & Branching Wisely",
+      "districtIds": ["data-district", "logic-forest", "recycling-center"],
+      "districtLabel": "Data District · Logic Forest · Recycling Center",
+      "love": "earth",
+      "unlockAt": 0.34,
+      "summary": "Pair mathematical balance and boolean fairness with real-world decisions that protect streams, wildlife, and zero-waste sorting stations.",
+      "lessons": [
+        {
+          "number": 7,
+          "code": "L07",
+          "title": "Arithmetic Operators",
+          "branch": "module/l7_arithmetic_ops",
+          "districtId": "green-energy-station",
+          "love": "earth",
+          "pythonConcept": "Addition, subtraction, division, and remainder helpers",
+          "positiveHabit": "Fair Sharing: Balance solar energy and rainwater evenly across every terrace."
+        },
+        {
+          "number": 8,
+          "code": "L08",
+          "title": "Comparison Operators",
+          "branch": "module/l8_comparison_ops",
+          "districtId": "data-district",
+          "love": "others",
+          "pythonConcept": "Testing equality and thresholds (==, >, <, >=)",
+          "positiveHabit": "Fairness: Check facts objectively rather than judging by rumors."
+        },
+        {
+          "number": 9,
+          "code": "L09",
+          "title": "Comparison + Boolean",
+          "branch": "module/l9_compare_bool",
+          "districtId": "logic-forest",
+          "love": "self",
+          "pythonConcept": "Combining True/False logic with and, or, not",
+          "positiveHabit": "Thoughtful Judgment: Look at both need and impact before taking action."
+        },
+        {
+          "number": 10,
+          "code": "L10",
+          "title": "If",
+          "branch": "module/l10_if",
+          "districtId": "logic-forest",
+          "love": "others",
+          "pythonConcept": "Triggering protective actions when a condition holds",
+          "positiveHabit": "Proactive Helpfulness: Step in kindly whenever you spot a classmate in need."
+        },
+        {
+          "number": 11,
+          "code": "L11",
+          "title": "If / Else",
+          "branch": "module/l11_if_else",
+          "districtId": "recycling-center",
+          "love": "earth",
+          "pythonConcept": "Routing two-branch outcomes cleanly",
+          "positiveHabit": "Responsibility: Sort every resource thoughtfully under the living moss roof."
+        }
+      ]
+    },
+    {
+      "id": "chapter-4",
+      "order": 4,
+      "title": "Chapter IV · Rivers, Rhythm & Shared Lists",
+      "subtitle": "Repetition With Purpose, Pacing & Community Care",
+      "districtIds": ["loop-river", "friendship-square", "earth-garden"],
+      "districtLabel": "Loop River · Friendship Square · Earth Garden",
+      "love": "others",
+      "unlockAt": 0.50,
+      "summary": "Let loops and lists carry steady kindness down the Loop River, pairing patience and unhurried timing with team care routines.",
+      "lessons": [
+        {
+          "number": 12,
+          "code": "L12",
+          "title": "For Loop",
+          "branch": "module/l12_for_loop",
+          "districtId": "loop-river",
+          "love": "earth",
+          "pythonConcept": "Repeating predictable steps across a counted range",
+          "positiveHabit": "Steady Consistency: Good habits practiced daily outshine rare bursts of effort."
+        },
+        {
+          "number": 13,
+          "code": "L13",
+          "title": "For Loop Challenge + time.sleep()",
+          "branch": "module/l13_for_loop_sleep",
+          "districtId": "creativity-workshop",
+          "love": "self",
+          "pythonConcept": "Controlling rhythm, reflection pauses, and timed steps",
+          "positiveHabit": "Patience & Mindfulness: Pause and breathe calmly between big steps."
+        },
+        {
+          "number": 14,
+          "code": "L14",
+          "title": "List",
+          "branch": "module/l14_list",
+          "districtId": "friendship-square",
+          "love": "others",
+          "pythonConcept": "Gathering items, neighbors, and supplies in ordered lists",
+          "positiveHabit": "Inclusiveness: Make sure no friend, elder, or sapling is left off the list."
+        },
+        {
+          "number": 15,
+          "code": "L15",
+          "title": "List + For Loop",
+          "branch": "module/l15_list_for_loop",
+          "districtId": "friendship-square",
+          "love": "others",
+          "pythonConcept": "Visiting every element in a list systematically",
+          "positiveHabit": "Compassion in Action: Check on every neighbor along the garden path one by one."
+        }
+      ]
+    },
+    {
+      "id": "chapter-5",
+      "order": 5,
+      "title": "Chapter V · Perseverance, Listening & Kind AI",
+      "subtitle": "While Goals, Human Dialogue & Ethical Innovation",
+      "districtIds": ["function-mountain", "innovation-tower", "celebration-hall"],
+      "districtLabel": "Function Mountain · Innovation Tower · Celebration Hall",
+      "love": "others",
+      "unlockAt": 0.68,
+      "summary": "Combine persistent while loops, attentive human input, and humane Python AI projects that serve people and protect the Earth.",
+      "lessons": [
+        {
+          "number": 16,
+          "code": "L16",
+          "title": "While Loop",
+          "branch": "module/l16_while_loop",
+          "districtId": "green-energy-station",
+          "love": "self",
+          "pythonConcept": "Condition-driven persistence until a clean milestone finishes",
+          "positiveHabit": "Perseverance: Keep gently trying and refining until your goal is reached."
+        },
+        {
+          "number": 17,
+          "code": "L17",
+          "title": "While Loop Challenge",
+          "branch": "module/l17_while_challenge",
+          "districtId": "function-mountain",
+          "love": "self",
+          "pythonConcept": "Preventing infinite loops and debugging guard conditions",
+          "positiveHabit": "Self-Reflection: Check your own habits when stuck instead of blaming others."
+        },
+        {
+          "number": 18,
+          "code": "L18",
+          "title": "Input + Interactive Program",
+          "branch": "module/l18_input_interactive",
+          "districtId": "celebration-hall",
+          "love": "others",
+          "pythonConcept": "Listening to user input() and answering thoughtfully",
+          "positiveHabit": "Empathy & Listening: Ask first and listen closely before trying to help."
+        },
+        {
+          "number": 19,
+          "code": "L19",
+          "title": "Python AI Challenge",
+          "branch": "module/l19_ai_challenge",
+          "districtId": "innovation-tower",
+          "love": "earth",
+          "pythonConcept": "Designing humane, rule-and-data-assisted AI helpers",
+          "positiveHabit": "Responsible Problem-Solving: Always steer technology to love self, others, and the Earth."
+        }
+      ]
+    }
+  ]
+}

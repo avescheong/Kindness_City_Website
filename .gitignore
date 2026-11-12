@@ -1,0 +1,17 @@
+# OS & editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Python caches
+__pycache__/
+*.py[cod]
+
+# Local Chrome / temporary verification artifacts
+_chrome_profile/
+*.log
+.tmp/

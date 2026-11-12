@@ -1,0 +1,3061 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>善心之城 · Kindness City: Where Good Habits Shape Destiny</title>
+<meta name="description" content="Step through the front gate into Kindness City (命好不如习惯好). A living adventure where Python programming and positive life habits nurture yourself, others, and the earth.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230E1714'/><circle cx='16' cy='16' r='9' fill='none' stroke='%2352E5C7' stroke-width='2'/><circle cx='16' cy='16' r='3.5' fill='%23E8B454'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="scrollcraft.css">
+<style>
+  /* =========================================================================
+     BRAND TOKENS: 6 colour roles + 2 font families.
+     scrollcraft.css remains untouched; all page styling lives here.
+     ========================================================================= */
+  :root {
+    --sc-canvas:      #0E1714;
+    --sc-surface:     #16241F;
+    --sc-ink:         #F7F1E3;
+    --sc-ink-soft:    #C6D3C4;
+    --sc-accent:      #52E5C7;
+    --sc-accent-ink:  #081311;
+
+    --sc-font-display: "Newsreader", "Songti SC", "Noto Serif TC", Georgia, serif;
+    --sc-font-text:    "Plus Jakarta Sans", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+    --sc-font-mono:    ui-monospace, "Cascadia Mono", "Consolas", monospace;
+
+    --sc-shadow-color: 162 48% 4%;
+    --kc-gold:        #EAB85C;
+    --kc-vow-color:   #52E5C7;
+  }
+
+  /* Light-on-dark optical compensation (taste.md) */
+  body {
+    line-height: 1.65;
+    letter-spacing: 0.004em;
+  }
+
+  /* =========================================================================
+     CARTOGRAPHIC SCROLL CHROME:
+     1. Top-left translucent seal stamp + Atlas trigger (clears right observatory sky)
+     2. Right-edge seamless Hanging Silk Scroll Bookmark [data-kc-scrollmap]
+     ========================================================================= */
+  .kc-corner-seal {
+    position: fixed;
+    top: clamp(0.85rem, 2vh, 1.3rem);
+    left: var(--sc-gutter);
+    right: auto;
+    z-index: var(--sc-z-chrome);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.36rem 0.62rem 0.36rem 0.44rem;
+    background: rgba(10, 19, 16, 0.72);
+    border: 1px solid rgba(247, 241, 227, 0.14);
+    border-radius: var(--sc-r-md);
+    box-shadow: 0 4px 18px rgba(4, 10, 8, 0.32);
+    backdrop-filter: blur(8px);
+  }
+  .kc-seal-stamp {
+    width: 1.85rem;
+    height: 1.85rem;
+    border-radius: 5px;
+    background: #9E2B25;
+    color: #FBF4E6;
+    display: grid;
+    place-items: center;
+    font-family: var(--sc-font-display);
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    box-shadow: inset 0 0 0 1px rgba(251, 244, 230, 0.28);
+  }
+  .kc-seal-title {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.12;
+  }
+  .kc-seal-title strong {
+    font-family: var(--sc-font-display);
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: var(--sc-ink);
+  }
+  .kc-seal-title span {
+    font-family: var(--sc-font-mono);
+    font-size: 0.64rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--sc-ink-soft);
+  }
+  .kc-atlas-btn {
+    margin-left: 0.25rem;
+    padding: 0.32rem 0.62rem;
+    border-radius: var(--sc-r-sm);
+    border: 1px solid color-mix(in oklab, var(--sc-accent) 36%, transparent);
+    background: rgba(18, 32, 27, 0.78);
+    color: var(--sc-ink);
+    font-size: 0.74rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: transform var(--sc-d-fast) var(--sc-ease-out),
+                background-color var(--sc-d-fast) var(--sc-ease-out),
+                border-color var(--sc-d-fast) var(--sc-ease-out);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .kc-atlas-btn:hover {
+      background: color-mix(in oklab, var(--sc-accent) 18%, var(--sc-surface));
+      border-color: var(--sc-accent);
+    }
+  }
+  .kc-atlas-btn:active { transform: scale(0.97); }
+
+  /* Seamless Right-Edge Hanging Scroll Ribbon & Progressive Botanical Spine */
+  .kc-scrollmap {
+    position: fixed;
+    right: clamp(0.6rem, 1.5vw, 1.15rem);
+    top: 50%;
+    transform: translate3d(0, -50%, 0);
+    z-index: var(--sc-z-chrome);
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    pointer-events: none;
+  }
+  .kc-scrollmap__meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.28rem;
+    padding: 0.55rem 0.65rem;
+    border-radius: var(--sc-r-md);
+    background: rgba(10, 19, 16, 0.88);
+    border: 1px solid rgba(247, 241, 227, 0.14);
+    box-shadow: var(--sc-e2);
+    backdrop-filter: blur(12px);
+    opacity: 0;
+    transform: translate3d(10px, 0, 0);
+    pointer-events: none;
+    transition: opacity 220ms var(--sc-ease-out), transform 220ms var(--sc-ease-out);
+  }
+  .kc-scrollmap:hover .kc-scrollmap__meta,
+  .kc-scrollmap:focus-within .kc-scrollmap__meta {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    pointer-events: auto;
+  }
+  .kc-scrollmap__railcol {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.42rem;
+    pointer-events: auto;
+  }
+  .kc-scrollmap__ribbon-row {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+  .kc-scrollmap__alt {
+    padding: 0.18rem 0.45rem;
+    border-radius: 999px;
+    background: rgba(8, 16, 13, 0.72);
+    border: 1px solid rgba(82, 229, 199, 0.24);
+    color: var(--sc-accent);
+    font-family: var(--sc-font-mono);
+    font-size: 0.64rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    backdrop-filter: blur(6px);
+  }
+  .kc-waypoint-btn {
+    appearance: none;
+    background: transparent;
+    border: 0;
+    padding: 0.22rem 0.48rem;
+    border-radius: 4px;
+    color: var(--sc-ink-soft);
+    font-family: var(--sc-font-text);
+    font-size: 0.72rem;
+    text-align: right;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color var(--sc-d-fast) var(--sc-ease-out),
+                background-color var(--sc-d-fast) var(--sc-ease-out);
+  }
+  .kc-waypoint-btn[aria-current="true"] {
+    color: var(--sc-accent-ink);
+    background: var(--sc-accent);
+    font-weight: 600;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .kc-waypoint-btn:not([aria-current="true"]):hover {
+      color: var(--sc-ink);
+      background: color-mix(in oklab, var(--sc-ink) 10%, transparent);
+    }
+  }
+  /* Hanging Silk Scroll Bookmark with Antique Cedar Rollers */
+  .kc-scrollmap__scrollwrap {
+    position: relative;
+    padding: 4px 0;
+    cursor: pointer;
+  }
+  .kc-scrollmap__scrollwrap::before,
+  .kc-scrollmap__scrollwrap::after {
+    content: "";
+    position: absolute;
+    left: -3px;
+    right: -3px;
+    height: 3px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #5F3D28, #C99D66 50%, #5F3D28);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
+    pointer-events: none;
+  }
+  .kc-scrollmap__scrollwrap::before { top: 0; }
+  .kc-scrollmap__scrollwrap::after { bottom: 0; }
+  .kc-scrollmap__strip {
+    position: relative;
+    width: 34px;
+    height: 206px;
+    border-radius: 2px;
+    overflow: hidden;
+    border-inline: 1px solid rgba(244, 236, 216, 0.22);
+    box-shadow: 0 8px 24px rgba(4, 10, 8, 0.55);
+    flex-shrink: 0;
+  }
+  .kc-scrollmap__strip img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.90;
+  }
+  .kc-scrollmap__river {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  .kc-scrollmap__lens {
+    position: absolute;
+    left: 1px;
+    right: 1px;
+    top: 0;
+    height: 34px;
+    border: 1.5px solid var(--sc-accent);
+    border-radius: 2px;
+    background: color-mix(in oklab, var(--sc-accent) 16%, transparent);
+    box-shadow: 0 0 10px color-mix(in oklab, var(--sc-accent) 42%, transparent);
+    pointer-events: none;
+    will-change: transform;
+  }
+  /* Progressive Nature Growth Spine integrated beside Scroll Ribbon */
+  .kc-flora-spine {
+    width: 14px;
+    height: 206px;
+    flex-shrink: 0;
+    pointer-events: none;
+  }
+  .kc-flora-node {
+    opacity: 0.24;
+    transform-origin: center;
+    transform-box: fill-box;
+    transform: scale(0.55);
+    transition: opacity 420ms var(--sc-ease-out), transform 420ms var(--sc-ease-out);
+  }
+  .kc-flora-node.is-bloomed {
+    opacity: 1;
+    transform: scale(1);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .kc-flora-node { opacity: 1; transform: scale(1); transition: none; }
+    .kc-scrollmap__meta { transition: none; }
+  }
+
+  /* =========================================================================
+     ACT 1 · SUMMIT HERO: 5 INDEPENDENT DEPTH PLANES + SCRUB WATERFALL
+     ========================================================================= */
+  .kc-hero-plane {
+    position: absolute;
+    left: -2%;
+    top: -8%;
+    width: 104%;
+    height: 116%;
+    max-width: none;
+    object-fit: cover;
+    pointer-events: none;
+    will-change: transform;
+  }
+  .kc-hero-plane--sky {
+    z-index: 0;
+    opacity: 1;
+  }
+  /* Cut open the sky band above the gorge ridge on Plane 3 so Plane 1 peaks move independently behind clouds */
+  .kc-hero-mid {
+    z-index: 1;
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.06) 20%,
+      rgba(0, 0, 0, 0.88) 46%,
+      #000000 58%,
+      #000000 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.06) 20%,
+      rgba(0, 0, 0, 0.88) 46%,
+      #000000 58%,
+      #000000 100%
+    );
+  }
+  .kc-hero-plane--clouds {
+    z-index: 2;
+    mix-blend-mode: screen;
+    opacity: 0.68;
+  }
+  .kc-hero-plane--observatory {
+    z-index: 3;
+    object-position: right center;
+  }
+  .kc-hero-plane--fore {
+    z-index: 4;
+    top: auto;
+    bottom: -5%;
+    height: 110%;
+    object-position: center bottom;
+  }
+  /* Fade the section floor above every plane so no parallax clip line ever shows */
+  .kc-hero-floor {
+    position: absolute;
+    inset: auto 0 0 0;
+    height: clamp(9rem, 22vh, 15rem);
+    z-index: 5;
+    pointer-events: none;
+    background: linear-gradient(
+      to top,
+      var(--sc-canvas) 0%,
+      color-mix(in oklab, var(--sc-canvas) 82%, transparent) 42%,
+      transparent 100%
+    );
+  }
+  /* Dedicated sibling scrim for the lead hero copy and second beat */
+  .kc-hero-scrim {
+    z-index: 6;
+    background:
+      radial-gradient(66% 82% at 22% 52%,
+        rgba(8, 16, 13, 0.94) 0%,
+        rgba(8, 16, 13, 0.84) 54%,
+        rgba(8, 16, 13, 0.28) 82%,
+        transparent 100%),
+      linear-gradient(90deg,
+        rgba(8, 16, 13, 0.92) 0%,
+        rgba(8, 16, 13, 0.78) 36%,
+        rgba(8, 16, 13, 0.24) 58%,
+        transparent 80%),
+      linear-gradient(to top,
+        rgba(8, 16, 13, 0.92) 0%,
+        rgba(8, 16, 13, 0.48) 36%,
+        transparent 68%);
+  }
+  .kc-hero-copy {
+    z-index: 20;
+    max-width: min(37rem, 62vw);
+    padding: clamp(1.35rem, 2.4vw, 2.1rem);
+    border-radius: var(--sc-r-md);
+    background: rgba(8, 16, 13, 0.84);
+    border: 1px solid var(--sc-hairline-strong);
+    box-shadow: var(--sc-e2), var(--sc-edge);
+    backdrop-filter: blur(12px);
+  }
+  .kc-hero-copy h1 {
+    max-width: 16ch;
+    font-size: clamp(2.25rem, 3.8vw + 0.8rem, 4.1rem);
+    color: var(--sc-ink);
+  }
+  .kc-hero-copy .sc-body {
+    margin-top: var(--sc-4);
+    max-width: 44ch;
+    color: var(--sc-ink);
+    font-size: var(--sc-t-lg);
+    line-height: 1.5;
+  }
+  .kc-hero-actions {
+    margin-top: var(--sc-5);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--sc-4);
+  }
+  .kc-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.82rem 1.45rem;
+    border-radius: var(--sc-r-sm);
+    background: var(--sc-accent);
+    color: var(--sc-accent-ink);
+    font-weight: 700;
+    font-size: var(--sc-t-sm);
+    text-decoration: none;
+    white-space: nowrap;
+    border: 1px solid color-mix(in oklab, var(--sc-ink) 20%, transparent);
+    box-shadow: var(--sc-e2);
+    transition: background-color var(--sc-d-fast) var(--sc-ease-out),
+                transform var(--sc-d-fast) var(--sc-ease-out);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .kc-cta:hover {
+      background: #6FF0D6;
+    }
+  }
+  .kc-cta:active {
+    transform: scale(0.97);
+  }
+
+  /* Second narrative beat inside Act 1 as the waterfall descends */
+  .kc-hero-beat2 {
+    z-index: 20;
+    left: var(--sc-gutter);
+    bottom: clamp(3rem, 11vh, 7.5rem);
+    max-width: min(36rem, 66vw);
+    padding: var(--sc-5);
+    border-radius: var(--sc-r-md);
+    background: rgba(10, 20, 17, 0.92);
+    border: 1px solid var(--sc-hairline-strong);
+    box-shadow: var(--sc-e2), var(--sc-edge);
+  }
+  .kc-hero-beat2 h2 {
+    margin: 0;
+    font-size: var(--sc-t-xl);
+    color: var(--sc-ink);
+  }
+  .kc-hero-beat2 p {
+    margin: var(--sc-3) 0 0;
+    color: var(--sc-ink-soft);
+  }
+
+  /* =========================================================================
+     ACT 2 · LATERAL PAN RAIL: UPPER VALLEY WATERSHED & NURSERIES
+     ========================================================================= */
+  .kc-pan-stage {
+    display: flex;
+    align-items: center;
+    background:
+      radial-gradient(80% 70% at 50% 50%, rgba(24, 42, 35, 0.65), rgba(14, 23, 20, 0.98)),
+      var(--sc-canvas);
+  }
+  .kc-rail {
+    display: flex;
+    align-items: stretch;
+    gap: clamp(1.35rem, 2.8vw, 2.5rem);
+    padding-inline: var(--sc-gutter) clamp(6rem, 12vw, 11rem);
+    height: min(82vh, 45rem);
+  }
+  .kc-rail__intro,
+  .kc-rail__outro {
+    width: clamp(21rem, 30vw, 27rem);
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--sc-6);
+    border-radius: var(--sc-r-md);
+    background: rgba(18, 31, 26, 0.94);
+    border: 1px solid var(--sc-hairline-strong);
+    box-shadow: var(--sc-e2), var(--sc-edge);
+  }
+  .kc-rail__card {
+    width: clamp(23rem, 33vw, 30rem);
+    flex-shrink: 0;
+    display: grid;
+    grid-template-rows: minmax(11rem, 1fr) auto;
+    border-radius: var(--sc-r-md);
+    background: rgba(20, 34, 29, 0.95);
+    border: 1px solid var(--sc-hairline-strong);
+    box-shadow: var(--sc-e2), var(--sc-edge);
+    overflow: hidden;
+  }
+  .kc-rail__media {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    height: 100%;
+    min-height: 0;
+  }
+  .kc-rail__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .kc-rail__body {
+    position: relative;
+    z-index: 2;
+    padding: clamp(1rem, 1.8vw, 1.45rem) clamp(1.15rem, 2vw, 1.6rem);
+    background: rgba(14, 24, 20, 0.98);
+    border-top: 1px solid var(--sc-hairline);
+  }
+  .kc-rail__tag {
+    display: inline-block;
+    font-family: var(--sc-font-mono);
+    font-size: var(--sc-t-xs);
+    color: var(--sc-accent);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .kc-rail__body h3 {
+    margin: var(--sc-2) 0 0;
+    font-family: var(--sc-font-display);
+    font-size: clamp(1.18rem, 1.4vw + 0.45rem, 1.55rem);
+    line-height: 1.2;
+    font-weight: 500;
+    color: var(--sc-ink);
+  }
+  .kc-rail__body p {
+    margin: var(--sc-2) 0 0;
+    font-size: var(--sc-t-sm);
+    color: var(--sc-ink-soft);
+    max-width: 42ch;
+  }
+  /* Staggered settle driven from --sc-p on desktop when motion is allowed (devices.md §3) */
+  @media (prefers-reduced-motion: no-preference) {
+    .kc-rail > .kc-rail__card {
+      opacity: clamp(0.68, calc(0.68 + var(--sc-p, 0) * 0.45), 1);
+    }
+  }
+
+  /* =========================================================================
+     ACT 3 · QUIET FLOW SPREAD: CODING ACADEMY & ECO-RECYCLING PAVILION
+     Reduced top padding right after pinned Act 2 (devices.md §8)
+     ========================================================================= */
+  .kc-act-civic {
+    padding-top: clamp(4.6rem, 7.5vh, 6rem);
+    padding-bottom: var(--sc-section);
+    background: #121E1A;
+    border-top: 1px solid var(--sc-hairline);
+    border-bottom: 1px solid var(--sc-hairline);
+  }
+  .kc-civic-spread {
+    display: grid;
+    grid-template-columns: 1.08fr 0.92fr;
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: start;
+  }
+  .kc-civic-lead {
+    padding-right: var(--sc-4);
+  }
+  .kc-civic-lead h2 {
+    max-width: 18ch;
+    color: var(--sc-ink);
+  }
+  .kc-civic-lead .sc-lede {
+    margin-top: var(--sc-4);
+    color: var(--sc-ink);
+  }
+  .kc-civic-lead .sc-body {
+    margin-top: var(--sc-4);
+    color: var(--sc-ink-soft);
+  }
+  .kc-blueprint-box {
+    margin-top: var(--sc-6);
+    padding: var(--sc-5);
+    border-radius: var(--sc-r-md);
+    background: rgba(14, 23, 20, 0.9);
+    border: 1px solid var(--sc-hairline-strong);
+    box-shadow: var(--sc-e1), var(--sc-edge);
+  }
+  .kc-blueprint-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .kc-blueprint-svg path.kc-trace-line {
+    stroke-dasharray: 600;
+    stroke-dashoffset: calc(600 - clamp(0, var(--sc-p, 0.5) * 750, 600));
+  }
+  .kc-civic-figures {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sc-7);
+  }
+  .kc-figure-frame {
+    margin: 0;
+    border-radius: var(--sc-r-md);
+    overflow: hidden;
+    background: rgba(14, 23, 20, 0.94);
+    border: 1px solid var(--sc-hairline-strong);
+    box-shadow: var(--sc-e2);
+  }
+  /* Override both width and height together per taste.md */
+  .kc-figure-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .kc-figure-caption {
+    padding: var(--sc-4) var(--sc-5);
+    border-top: 1px solid var(--sc-hairline);
+  }
+  .kc-figure-caption strong {
+    display: block;
+    font-family: var(--sc-font-display);
+    font-size: var(--sc-t-lg);
+    color: var(--sc-ink);
+  }
+  .kc-figure-caption span {
+    display: block;
+    margin-top: var(--sc-1);
+    font-size: var(--sc-t-sm);
+    color: var(--sc-ink-soft);
+  }
+  .kc-rail__eco {
+    display: inline-block;
+    margin-top: var(--sc-2);
+    padding: 0.16rem 0.5rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in oklab, #8CE563 38%, transparent);
+    background: rgba(140, 229, 99, 0.10);
+    font-family: var(--sc-font-mono);
+    font-size: 0.68rem;
+    color: #B4F298;
+    letter-spacing: 0.03em;
+  }
+
+  /* =========================================================================
+     EXPANDABLE LIVING CITY DISTRICTS & DATA-DRIVEN CURRICULUM SANCTUARY
+     Rendered cleanly inside Act 3 (flow) from data/curriculum.json
+     ========================================================================= */
+  .kc-sanctuary {
+    margin-top: clamp(3rem, 6vw, 5.5rem);
+    padding-top: clamp(2.5rem, 4.5vw, 4rem);
+    border-top: 1px solid var(--sc-hairline-strong);
+  }
+  .kc-flora-divider {
+    width: 100%;
+    max-width: 28rem;
+    height: 28px;
+    display: block;
+    margin-bottom: var(--sc-3);
+  }
+  .kc-flora-divider path.kc-vine-grow {
+    stroke-dasharray: 460;
+    stroke-dashoffset: calc(460 - clamp(0, var(--kc-env-bloom, 0.5) * 650, 460));
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .kc-flora-divider path.kc-vine-grow { stroke-dashoffset: 0; }
+  }
+  .kc-sanctuary-head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: var(--sc-4);
+  }
+  .kc-sanctuary-head h2 {
+    margin-top: var(--sc-2);
+    color: var(--sc-ink);
+    max-width: 20ch;
+  }
+  .kc-sanctuary-head .sc-body {
+    margin-top: var(--sc-2);
+    max-width: 54ch;
+    color: var(--sc-ink-soft);
+  }
+  .kc-love-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+  .kc-filter-btn {
+    padding: 0.42rem 0.78rem;
+    border-radius: 999px;
+    border: 1px solid var(--sc-hairline-strong);
+    background: rgba(14, 24, 20, 0.92);
+    color: var(--sc-ink-soft);
+    font-family: var(--sc-font-text);
+    font-size: var(--sc-t-xs);
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color var(--sc-d-fast) var(--sc-ease-out),
+                background-color var(--sc-d-fast) var(--sc-ease-out),
+                color var(--sc-d-fast) var(--sc-ease-out);
+  }
+  .kc-filter-btn[aria-pressed="true"] {
+    background: var(--sc-accent);
+    border-color: var(--sc-accent);
+    color: var(--sc-accent-ink);
+  }
+  .kc-sanctuary-grid {
+    margin-top: var(--sc-6);
+    display: grid;
+    grid-template-columns: 0.92fr 1.08fr;
+    gap: clamp(1.5rem, 3.5vw, 3rem);
+    align-items: start;
+  }
+  .kc-district-box,
+  .kc-roadmap-box {
+    min-width: 0;
+    padding: var(--sc-5);
+    border-radius: var(--sc-r-md);
+    background: rgba(14, 23, 20, 0.94);
+    border: 1px solid var(--sc-hairline-strong);
+    box-shadow: var(--sc-e2), var(--sc-edge);
+  }
+  @media (min-width: 861px) {
+    .kc-civic-spread,
+    .kc-promenade,
+    .kc-sanctuary {
+      padding-right: clamp(5.5rem, 8vw, 8rem);
+    }
+  }
+  .kc-promenade {
+    margin-top: clamp(3rem, 6vw, 5.5rem);
+    padding-top: clamp(2.5rem, 5vw, 4rem);
+    border-top: 1px solid var(--sc-hairline);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(3rem, 6vw, 5.5rem);
+    position: relative;
+  }
+  .kc-promenade-head {
+    max-width: 44rem;
+  }
+  .kc-promenade-head h3 {
+    margin: var(--sc-2) 0 0;
+    font-family: var(--sc-font-display);
+    font-size: var(--sc-t-2xl);
+    color: var(--sc-ink);
+  }
+  .kc-promenade-head p {
+    margin: var(--sc-3) 0 0;
+    color: var(--sc-ink-soft);
+    font-size: var(--sc-t-base);
+  }
+  .kc-promenade-stop {
+    display: grid;
+    grid-template-columns: 1.08fr 0.92fr;
+    gap: clamp(1.5rem, 4vw, 3.6rem);
+    align-items: center;
+  }
+  .kc-promenade-stop--flip .kc-promenade-media {
+    order: 2;
+  }
+  .kc-promenade-stop--flip .kc-promenade-copy {
+    order: 1;
+  }
+  .kc-promenade-media {
+    margin: 0;
+    border-radius: var(--sc-r-md);
+    overflow: hidden;
+    background: rgba(14, 23, 20, 0.94);
+    border: 1px solid var(--sc-hairline-strong);
+    box-shadow: var(--sc-e2);
+  }
+  .kc-promenade-media img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    display: block;
+  }
+  .kc-promenade-copy {
+    padding: clamp(1.2rem, 2.5vw, 2rem);
+    border-radius: var(--sc-r-md);
+    background: rgba(14, 24, 20, 0.88);
+    border: 1px solid var(--sc-hairline-strong);
+    box-shadow: var(--sc-e1), var(--sc-edge);
+  }
+  .kc-promenade-elev {
+    display: inline-block;
+    font-family: var(--sc-font-mono);
+    font-size: var(--sc-t-xs);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--sc-accent);
+  }
+  .kc-promenade-copy h4 {
+    margin: var(--sc-2) 0 0;
+    font-family: var(--sc-font-display);
+    font-size: var(--sc-t-xl);
+    color: var(--sc-ink);
+  }
+  .kc-promenade-copy > p {
+    margin: var(--sc-2) 0 0;
+    font-size: var(--sc-t-sm);
+    color: var(--sc-ink-soft);
+  }
+  .kc-promenade-pair {
+    margin-top: var(--sc-3);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sc-2);
+  }
+  .kc-district-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.42rem;
+    padding: 0.3rem 0.62rem 0.3rem 0.35rem;
+    border-radius: var(--sc-r-sm);
+    border: 1px solid var(--sc-hairline);
+    background: rgba(20, 34, 29, 0.88);
+    color: var(--sc-ink-soft);
+    font-size: 0.76rem;
+    cursor: pointer;
+    transition: border-color var(--sc-d-fast) var(--sc-ease-out),
+                background-color var(--sc-d-fast) var(--sc-ease-out),
+                color var(--sc-d-fast) var(--sc-ease-out);
+  }
+  .kc-district-thumb {
+    width: 28px;
+    height: 20px;
+    border-radius: 3px;
+    object-fit: cover;
+    flex-shrink: 0;
+    opacity: 0.58;
+    filter: saturate(0.75);
+    transition: opacity var(--sc-d-fast) var(--sc-ease-out), filter var(--sc-d-fast) var(--sc-ease-out);
+  }
+  .kc-district-chip.is-unlocked .kc-district-thumb,
+  .kc-district-chip.is-active .kc-district-thumb {
+    opacity: 1;
+    filter: saturate(1);
+  }
+  .kc-district-detail__media {
+    margin: 0 0 var(--sc-3);
+    border-radius: var(--sc-r-sm);
+    overflow: hidden;
+    border: 1px solid var(--sc-hairline-strong);
+  }
+  .kc-district-detail__media img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    display: block;
+  }
+  .kc-district-jump {
+    padding: 0.28rem 0.62rem;
+    border-radius: var(--sc-r-pill);
+    border: 1px solid color-mix(in oklab, var(--sc-accent) 55%, transparent);
+    background: rgba(16, 36, 30, 0.9);
+    color: var(--sc-accent);
+    font-family: var(--sc-font-mono);
+    font-size: 0.68rem;
+    cursor: pointer;
+  }
+  .kc-box-kicker {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--sc-2);
+    font-family: var(--sc-font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--sc-accent);
+    margin-bottom: var(--sc-3);
+  }
+  .kc-district-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+  .kc-district-chip::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.38;
+  }
+  .kc-district-chip.is-unlocked::before {
+    background: #8CE563;
+    opacity: 1;
+    box-shadow: 0 0 8px rgba(140, 229, 99, 0.7);
+  }
+  .kc-district-chip.is-active {
+    border-color: var(--sc-accent);
+    background: rgba(30, 52, 44, 0.96);
+    color: var(--sc-ink);
+  }
+  .kc-district-detail {
+    margin-top: var(--sc-4);
+    padding-top: var(--sc-4);
+    border-top: 1px solid var(--sc-hairline);
+  }
+  .kc-district-detail__top {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--sc-2);
+  }
+  .kc-district-detail h3 {
+    margin: 0;
+    font-family: var(--sc-font-display);
+    font-size: var(--sc-t-xl);
+    color: var(--sc-ink);
+  }
+  .kc-district-meta {
+    font-family: var(--sc-font-mono);
+    font-size: 0.72rem;
+    color: var(--sc-accent);
+  }
+  .kc-district-desc {
+    margin: var(--sc-2) 0 0;
+    font-size: var(--sc-t-sm);
+    color: var(--sc-ink-soft);
+  }
+  .kc-district-pair {
+    margin-top: var(--sc-3);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sc-2);
+  }
+  .kc-pair-cell {
+    padding: 0.5rem 0.65rem;
+    border-radius: var(--sc-r-sm);
+    background: rgba(10, 18, 15, 0.9);
+    border: 1px solid var(--sc-hairline);
+  }
+  .kc-pair-cell span {
+    display: block;
+    font-family: var(--sc-font-mono);
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--sc-accent);
+  }
+  .kc-pair-cell strong {
+    display: block;
+    margin-top: 0.15rem;
+    font-size: var(--sc-t-xs);
+    color: var(--sc-ink);
+    font-weight: 600;
+  }
+  .kc-eco-tags {
+    margin-top: var(--sc-3);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+  .kc-eco-tag {
+    padding: 0.18rem 0.52rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in oklab, #8CE563 42%, transparent);
+    background: rgba(140, 229, 99, 0.11);
+    font-family: var(--sc-font-mono);
+    font-size: 0.68rem;
+    color: #C3F5AC;
+  }
+  .kc-chapter-tabs {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.45rem;
+  }
+  .kc-chapter-tab {
+    padding: 0.5rem 0.55rem;
+    border-radius: var(--sc-r-sm);
+    border: 1px solid var(--sc-hairline);
+    background: rgba(18, 30, 26, 0.88);
+    color: var(--sc-ink-soft);
+    text-align: left;
+    cursor: pointer;
+    transition: border-color var(--sc-d-fast) var(--sc-ease-out),
+                background-color var(--sc-d-fast) var(--sc-ease-out);
+  }
+  .kc-chapter-tab strong {
+    display: block;
+    font-family: var(--sc-font-mono);
+    font-size: 0.72rem;
+    color: var(--sc-ink);
+  }
+  .kc-chapter-tab span {
+    display: block;
+    margin-top: 0.12rem;
+    font-size: 0.68rem;
+    color: var(--sc-ink-soft);
+  }
+  .kc-chapter-tab.is-unlocked strong::after {
+    content: " *";
+    color: #8CE563;
+  }
+  .kc-chapter-tab[aria-selected="true"] {
+    border-color: var(--sc-accent);
+    background: rgba(27, 46, 39, 0.98);
+    box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--sc-accent) 45%, transparent);
+  }
+  .kc-chapter-header {
+    margin-top: var(--sc-4);
+    padding-top: var(--sc-4);
+    border-top: 1px solid var(--sc-hairline);
+  }
+  .kc-chapter-header h3 {
+    margin: 0;
+    font-family: var(--sc-font-display);
+    font-size: var(--sc-t-xl);
+    color: var(--sc-ink);
+  }
+  .kc-chapter-header p {
+    margin: var(--sc-2) 0 0;
+    font-size: var(--sc-t-sm);
+    color: var(--sc-ink-soft);
+  }
+  .kc-lesson-list {
+    margin-top: var(--sc-3);
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+  .kc-lesson-row {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.65rem 0.75rem;
+    border-radius: var(--sc-r-sm);
+    background: rgba(9, 17, 14, 0.94);
+    border: 1px solid var(--sc-hairline);
+  }
+  .kc-lesson-code {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-family: var(--sc-font-mono);
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: #081311;
+    background: var(--sc-accent);
+  }
+  .kc-lesson-main {
+    min-width: 0;
+  }
+  .kc-lesson-main strong {
+    display: block;
+    font-size: var(--sc-t-sm);
+    color: var(--sc-ink);
+    font-weight: 600;
+  }
+  .kc-lesson-main span {
+    display: block;
+    margin-top: 0.14rem;
+    font-size: 0.75rem;
+    color: var(--sc-ink-soft);
+  }
+  .kc-lesson-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.25rem;
+  }
+  .kc-branch-pill {
+    padding: 0.16rem 0.45rem;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--sc-hairline-strong);
+    font-family: var(--sc-font-mono);
+    font-size: 0.68rem;
+    color: var(--sc-ink-soft);
+    overflow-wrap: anywhere;
+  }
+  .kc-lesson-dist-btn {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    font-family: var(--sc-font-mono);
+    font-size: 0.68rem;
+    color: var(--sc-accent);
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  /* =========================================================================
+     ACT 4 · THE ENGINEERED PEAK: THREE LOVES BIO-CANOPY (三愛生機亭)
+     Largest scroll span on the page (3.8vh) + interactive Three-Loves attunement
+     ========================================================================= */
+  .kc-canopy-lanterns,
+  .kc-canopy-vines {
+    position: absolute;
+    inset: -5%;
+    width: 110%;
+    height: 110%;
+    object-fit: cover;
+    z-index: 2;
+    pointer-events: none;
+    transition: opacity 220ms linear;
+  }
+  .kc-canopy-lanterns {
+    opacity: calc(0.14 + var(--kc-canopy-wake, 0) * 0.84);
+  }
+  .kc-canopy-vines {
+    opacity: calc(0.18 + var(--kc-canopy-wake, 0) * 0.78);
+    scale: calc(1 + var(--kc-canopy-wake, 0) * 0.12);
+    transform-origin: 56% 48%;
+  }
+  .kc-canopy-particles {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .kc-canopy-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    opacity: calc(0.32 + var(--kc-canopy-wake, 0) * 0.68);
+  }
+  #kc-canopy-veins .kc-vein {
+    stroke-dasharray: 100;
+    stroke-dashoffset: calc(100 - var(--kc-canopy-wake, 0) * 100);
+    stroke-width: 5.5px;
+    filter: blur(2.6px);
+    opacity: calc(0.18 + var(--kc-canopy-wake, 0) * 0.42);
+  }
+  #kc-spore-ring .kc-ring {
+    transform-origin: 1080px 485px;
+  }
+  .kc-canopy-scrim {
+    z-index: 3;
+    opacity: var(--kc-canopy-scrim-op, 1);
+    transition: opacity 260ms linear;
+    background:
+      radial-gradient(64% 82% at 22% 54%,
+        rgba(6, 14, 13, 0.95) 0%,
+        rgba(6, 14, 13, 0.85) 54%,
+        rgba(6, 14, 13, 0.25) 82%,
+        transparent 100%),
+      linear-gradient(90deg,
+        rgba(6, 14, 13, 0.94) 0%,
+        rgba(6, 14, 13, 0.80) 36%,
+        rgba(6, 14, 13, 0.24) 58%,
+        transparent 80%),
+      linear-gradient(to top,
+        rgba(6, 14, 13, 0.95) 0%,
+        rgba(6, 14, 13, 0.62) 34%,
+        transparent 64%);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .kc-canopy-vines {
+      scale: 1 !important;
+      opacity: 0.78 !important;
+    }
+    .kc-canopy-lanterns {
+      opacity: 0.78 !important;
+    }
+    #kc-canopy-veins .kc-vein {
+      stroke-dashoffset: 0 !important;
+    }
+  }
+  .kc-canopy-open {
+    z-index: 20;
+    max-width: min(36rem, 60vw);
+    padding: clamp(1.35rem, 2.4vw, 2.1rem);
+    border-radius: var(--sc-r-md);
+    background: rgba(6, 15, 13, 0.86);
+    border: 1px solid var(--sc-hairline-strong);
+    box-shadow: var(--sc-e2), var(--sc-edge);
+    backdrop-filter: blur(12px);
+  }
+  .kc-canopy-open h2 {
+    color: var(--sc-ink);
+    font-size: clamp(2.15rem, 3.6vw + 0.75rem, 3.85rem);
+    max-width: 16ch;
+  }
+  .kc-canopy-open p {
+    margin-top: var(--sc-4);
+    color: var(--sc-ink);
+    font-size: var(--sc-t-lg);
+    max-width: 44ch;
+  }
+  .kc-canopy-console {
+    z-index: 20;
+    left: var(--sc-gutter);
+    bottom: clamp(2.5rem, 9vh, 6.5rem);
+    max-width: min(42rem, 68vw);
+    padding: var(--sc-5) var(--sc-6);
+    border-radius: var(--sc-r-md);
+    background: rgba(8, 19, 17, 0.94);
+    border: 1px solid color-mix(in oklab, var(--kc-vow-color) 48%, transparent);
+    box-shadow: var(--sc-e3), var(--sc-edge);
+  }
+  .kc-canopy-console h3 {
+    margin: 0;
+    font-family: var(--sc-font-display);
+    font-size: var(--sc-t-xl);
+    color: var(--sc-ink);
+  }
+  .kc-canopy-console > p {
+    margin: var(--sc-2) 0 0;
+    font-size: var(--sc-t-sm);
+    color: var(--sc-ink-soft);
+  }
+  .kc-loves-tabs {
+    margin-top: var(--sc-4);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--sc-3);
+  }
+  .kc-love-btn {
+    padding: var(--sc-3) var(--sc-4);
+    border-radius: var(--sc-r-sm);
+    border: 1px solid var(--sc-hairline-strong);
+    background: rgba(16, 32, 28, 0.92);
+    color: var(--sc-ink);
+    text-align: left;
+    cursor: pointer;
+    transition: border-color var(--sc-d-fast) var(--sc-ease-out),
+                background-color var(--sc-d-fast) var(--sc-ease-out),
+                transform var(--sc-d-fast) var(--sc-ease-out);
+  }
+  .kc-love-btn strong {
+    display: block;
+    font-family: var(--sc-font-display);
+    font-size: var(--sc-t-base);
+    color: var(--sc-ink);
+  }
+  .kc-love-btn span {
+    display: block;
+    margin-top: 0.2rem;
+    font-size: var(--sc-t-xs);
+    color: var(--sc-ink-soft);
+  }
+  .kc-love-btn[aria-pressed="true"] {
+    border-color: var(--kc-vow-color);
+    background: color-mix(in oklab, var(--kc-vow-color) 18%, rgba(16, 32, 28, 0.96));
+    box-shadow: inset 0 0 0 1px var(--kc-vow-color);
+  }
+  .kc-love-btn:active { transform: scale(0.98); }
+  .kc-quest-strip {
+    margin-top: var(--sc-3);
+    padding: var(--sc-2) var(--sc-3);
+    border-radius: var(--sc-r-sm);
+    background: rgba(11, 22, 19, 0.92);
+    border: 1px solid var(--sc-hairline);
+    border-left: 3px solid var(--kc-vow-color);
+    font-family: var(--sc-font-mono);
+    font-size: var(--sc-t-xs);
+    color: var(--sc-ink);
+    line-height: 1.45;
+  }
+  .kc-vow-field {
+    margin-top: var(--sc-3);
+    display: flex;
+    align-items: center;
+    gap: var(--sc-3);
+  }
+  .kc-vow-field label {
+    font-family: var(--sc-font-mono);
+    font-size: var(--sc-t-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--sc-ink-soft);
+    white-space: nowrap;
+  }
+  .kc-vow-input {
+    flex: 1;
+    padding: 0.55rem 0.8rem;
+    border-radius: var(--sc-r-sm);
+    border: 1px solid var(--sc-hairline-strong);
+    background: rgba(6, 13, 11, 0.92);
+    color: var(--sc-ink);
+    font-size: var(--sc-t-sm);
+  }
+
+  /* =========================================================================
+     ACT 5 · RESOLVED CLOSE: CELEBRATION HALL, LOTUS POND & SCROLL PASSPORT
+     ========================================================================= */
+  .kc-close-stage {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .kc-close-scrim {
+    z-index: 2;
+    background:
+      linear-gradient(to top,
+        rgba(8, 16, 14, 0.96) 0%,
+        rgba(8, 16, 14, 0.84) 42%,
+        rgba(8, 16, 14, 0.35) 75%,
+        transparent 100%);
+  }
+  .kc-lantern-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    pointer-events: none;
+  }
+  .kc-close-inner {
+    position: relative;
+    z-index: 20;
+    width: 100%;
+    max-width: var(--sc-maxw);
+    margin-inline: auto;
+    padding-inline: var(--sc-gutter);
+    padding-bottom: clamp(1.5rem, 4vh, 3rem);
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+    align-items: end;
+  }
+  .kc-close-copy {
+    padding: var(--sc-5) var(--sc-6);
+    border-radius: var(--sc-r-md);
+    background: rgba(9, 18, 15, 0.94);
+    border: 1px solid var(--sc-hairline-strong);
+    box-shadow: var(--sc-e2), var(--sc-edge);
+  }
+  .kc-close-copy h2 {
+    color: var(--sc-ink);
+    max-width: 16ch;
+  }
+  .kc-close-copy p {
+    margin-top: var(--sc-3);
+    color: var(--sc-ink-soft);
+    max-width: 48ch;
+  }
+  .kc-close-cta-row {
+    margin-top: var(--sc-5);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--sc-3);
+  }
+  .kc-secondary-btn {
+    padding: 0.78rem 1.2rem;
+    border-radius: var(--sc-r-sm);
+    border: 1px solid var(--sc-hairline-strong);
+    background: rgba(20, 35, 30, 0.94);
+    color: var(--sc-ink);
+    font-weight: 600;
+    font-size: var(--sc-t-sm);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: border-color var(--sc-d-fast) var(--sc-ease-out),
+                background-color var(--sc-d-fast) var(--sc-ease-out),
+                transform var(--sc-d-fast) var(--sc-ease-out);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .kc-secondary-btn:hover {
+      border-color: var(--sc-accent);
+      background: rgba(28, 48, 41, 0.96);
+    }
+  }
+  .kc-secondary-btn:active { transform: scale(0.97); }
+
+  /* Live Pilgrim Scroll Seal Card */
+  .kc-passport-card {
+    padding: var(--sc-5);
+    border-radius: var(--sc-r-md);
+    background: rgba(14, 25, 21, 0.95);
+    border: 1px solid color-mix(in oklab, var(--kc-vow-color) 45%, transparent);
+    box-shadow: var(--sc-e3), var(--sc-edge);
+  }
+  .kc-passport-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: var(--sc-3);
+    border-bottom: 1px solid var(--sc-hairline);
+  }
+  .kc-passport-head strong {
+    font-family: var(--sc-font-display);
+    font-size: var(--sc-t-lg);
+    color: var(--sc-ink);
+  }
+  .kc-passport-seal {
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+    background: #9E2B25;
+    color: #FBF4E6;
+    font-family: var(--sc-font-mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+  }
+  .kc-passport-body {
+    margin-top: var(--sc-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sc-2);
+  }
+  .kc-passport-vow {
+    font-family: var(--sc-font-display);
+    font-size: var(--sc-t-lg);
+    font-style: italic;
+    color: var(--sc-ink);
+    margin: 0;
+  }
+  .kc-passport-quest {
+    font-family: var(--sc-font-mono);
+    font-size: var(--sc-t-xs);
+    color: var(--sc-ink-soft);
+    margin: 0;
+  }
+  .kc-passport-status {
+    font-family: var(--sc-font-mono);
+    font-size: var(--sc-t-xs);
+    color: var(--sc-accent);
+    margin: 0;
+  }
+
+  .kc-footer {
+    position: relative;
+    z-index: 20;
+    width: 100%;
+    padding: var(--sc-3) var(--sc-gutter);
+    border-top: 1px solid var(--sc-hairline);
+    background: rgba(8, 14, 12, 0.94);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--sc-3);
+    font-size: var(--sc-t-xs);
+    color: var(--sc-ink-soft);
+  }
+
+  /* =========================================================================
+     FULL MASTER SCROLL ATLAS DRAWER (Accessible Dialog)
+     ========================================================================= */
+  .kc-atlas-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: rgba(6, 12, 10, 0.88);
+    backdrop-filter: blur(12px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(1rem, 3vw, 2.5rem);
+  }
+  .kc-atlas-modal[aria-hidden="false"] {
+    display: flex;
+  }
+  .kc-atlas-dialog {
+    width: min(68rem, 94vw);
+    max-height: 90vh;
+    border-radius: var(--sc-r-lg);
+    background: var(--sc-surface);
+    border: 1px solid var(--sc-hairline-strong);
+    box-shadow: var(--sc-e3);
+    display: grid;
+    grid-template-rows: auto 1fr;
+    overflow: hidden;
+  }
+  .kc-atlas-header {
+    padding: var(--sc-4) var(--sc-5);
+    border-bottom: 1px solid var(--sc-hairline);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .kc-atlas-scroll-body {
+    overflow-y: auto;
+    padding: var(--sc-5);
+    display: grid;
+    grid-template-columns: minmax(16rem, 26rem) 1fr;
+    gap: var(--sc-6);
+    align-items: start;
+  }
+  .kc-atlas-scroll-body img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--sc-r-md);
+    border: 1px solid var(--sc-hairline-strong);
+  }
+  .kc-atlas-legend {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sc-3);
+    position: sticky;
+    top: 0;
+  }
+  .kc-atlas-stop {
+    padding: var(--sc-3) var(--sc-4);
+    border-radius: var(--sc-r-sm);
+    background: rgba(12, 21, 18, 0.88);
+    border: 1px solid var(--sc-hairline);
+    text-align: left;
+    cursor: pointer;
+  }
+  .kc-atlas-stop strong {
+    display: block;
+    color: var(--sc-ink);
+    font-family: var(--sc-font-display);
+  }
+  .kc-atlas-stop span {
+    font-size: var(--sc-t-xs);
+    color: var(--sc-ink-soft);
+  }
+
+  /* =========================================================================
+     MOBILE ART DIRECTION (below 860px & compact 360x640 phones)
+     Step hero down to --sc-t-2xl (taste.md), adjust plane crops, stack panels
+     ========================================================================= */
+  @media (max-width: 860px) {
+    .kc-corner-seal {
+      left: var(--sc-gutter);
+      right: auto;
+      max-width: calc(100vw - 2 * var(--sc-gutter));
+      padding: 0.35rem 0.6rem;
+      gap: 0.5rem;
+    }
+    .kc-scrollmap__meta {
+      display: none;
+    }
+    .kc-scrollmap {
+      right: 0.4rem;
+    }
+    .kc-scrollmap__strip {
+      width: 26px;
+      height: 132px;
+    }
+    .kc-scrollmap__alt {
+      display: none;
+    }
+    .kc-flora-spine {
+      display: none;
+    }
+    .kc-hero-copy {
+      max-width: calc(100vw - 4.5rem);
+      bottom: clamp(1.25rem, 5vh, 3rem);
+      padding: 1.15rem 1.3rem;
+    }
+    .kc-hero-copy h1.sc-display--xl {
+      font-size: var(--sc-t-2xl);
+    }
+    .kc-hero-copy .sc-body {
+      font-size: var(--sc-t-base);
+    }
+    .kc-hero-plane--observatory {
+      object-position: 82% 22%;
+      opacity: 0.82;
+    }
+    .kc-rail {
+      height: min(78svh, 36rem);
+      padding-right: 4.5rem;
+    }
+    .kc-rail__body {
+      padding: 0.9rem 1rem;
+    }
+    .kc-rail__intro,
+    .kc-rail__outro,
+    .kc-rail__card {
+      width: min(82vw, 22rem);
+    }
+    .kc-rail__card {
+      grid-template-rows: minmax(10.5rem, 1fr) auto;
+    }
+    .kc-civic-spread,
+    .kc-promenade-stop {
+      grid-template-columns: 1fr;
+    }
+    .kc-promenade-stop--flip .kc-promenade-media,
+    .kc-promenade-stop--flip .kc-promenade-copy {
+      order: initial;
+    }
+    .kc-promenade-pair {
+      grid-template-columns: 1fr;
+    }
+    .kc-promenade,
+    .kc-sanctuary {
+      padding-right: 3.1rem;
+    }
+    .kc-sanctuary-grid {
+      grid-template-columns: 1fr;
+    }
+    .kc-chapter-tabs {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .kc-district-pair {
+      grid-template-columns: 1fr;
+    }
+    .kc-lesson-row {
+      grid-template-columns: auto 1fr;
+    }
+    .kc-lesson-meta {
+      grid-column: 1 / -1;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .kc-canopy-open,
+    .kc-canopy-console {
+      max-width: calc(100vw - 4.5rem);
+      padding: 1.15rem 1.3rem;
+    }
+    .kc-canopy-open h2 {
+      font-size: var(--sc-t-2xl);
+    }
+    .kc-loves-tabs {
+      grid-template-columns: 1fr;
+      gap: var(--sc-2);
+    }
+    .kc-close-inner {
+      grid-template-columns: 1fr;
+      padding-right: 3.4rem;
+      padding-bottom: 0.75rem;
+      gap: 0.65rem;
+    }
+    .kc-passport-card {
+      padding: 0.75rem 1rem;
+    }
+    .kc-passport-head {
+      padding-bottom: 0.35rem;
+    }
+    .kc-passport-head strong {
+      font-size: 0.95rem;
+    }
+    .kc-passport-body {
+      margin-top: 0.35rem;
+      gap: 0.2rem;
+    }
+    .kc-passport-vow {
+      font-size: 0.92rem;
+    }
+    .kc-close-copy {
+      padding: 1rem 1.15rem;
+    }
+    .kc-close-copy h2.sc-display--lg {
+      font-size: 1.65rem;
+    }
+    .kc-close-copy p {
+      margin-top: 0.45rem;
+      font-size: 0.88rem;
+    }
+    .kc-close-cta-row {
+      margin-top: 0.75rem;
+      gap: 0.5rem;
+    }
+    .kc-atlas-scroll-body {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-height: 680px) and (max-width: 480px) {
+    .kc-rail {
+      height: min(84svh, 33rem);
+    }
+    .kc-rail__card {
+      grid-template-rows: minmax(9.5rem, 1fr) auto;
+    }
+    .kc-rail__body h3 {
+      font-size: 1.12rem;
+    }
+    .kc-hero-copy {
+      padding: 0.95rem 1.1rem;
+      bottom: 0.9rem;
+    }
+    .kc-hero-copy h1.sc-display--xl {
+      font-size: 1.7rem;
+    }
+    .kc-hero-copy .sc-body {
+      font-size: 0.84rem;
+      margin-top: 0.45rem;
+    }
+    .kc-hero-actions {
+      margin-top: 0.65rem;
+    }
+    .kc-canopy-open {
+      padding: 0.95rem 1.1rem;
+      bottom: 0.9rem;
+    }
+    .kc-canopy-open h2 {
+      font-size: 1.65rem;
+    }
+    .kc-canopy-open p {
+      font-size: 0.84rem;
+      margin-top: 0.45rem;
+    }
+    .kc-canopy-console {
+      padding: 0.72rem 0.88rem;
+      bottom: 0.7rem;
+    }
+    .kc-canopy-console h3 {
+      font-size: 1.05rem;
+    }
+    .kc-canopy-console > p {
+      display: none;
+    }
+    .kc-loves-tabs {
+      margin-top: 0.45rem;
+      gap: 0.35rem;
+    }
+    .kc-love-btn {
+      padding: 0.4rem 0.62rem;
+    }
+    .kc-love-btn span {
+      display: none;
+    }
+    .kc-quest-strip {
+      margin-top: 0.45rem;
+      padding: 0.35rem 0.5rem;
+      font-size: 0.68rem;
+    }
+    .kc-vow-field {
+      margin-top: 0.45rem;
+    }
+    .kc-vow-field label {
+      display: none;
+    }
+    .kc-passport-card {
+      display: none;
+    }
+    .kc-close-copy h2 {
+      font-size: 1.6rem;
+    }
+    .kc-close-copy p {
+      font-size: 0.82rem;
+      margin-top: 0.4rem;
+    }
+    .kc-close-cta-row {
+      margin-top: 0.6rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<span data-sc-progress></span>
+<div class="sc-grain" aria-hidden="true"></div>
+
+<!-- Corner Scroll Seal & Full Master Scroll Atlas Trigger -->
+<header class="kc-corner-seal" aria-label="Kindness City Identity">
+  <div class="kc-seal-stamp" aria-hidden="true">善</div>
+  <div class="kc-seal-title">
+    <strong>善心之城 · Kindness City</strong>
+    <span>Watershed Scroll</span>
+  </div>
+  <button type="button" class="kc-atlas-btn" id="open-atlas-btn" aria-haspopup="dialog" aria-controls="atlas-modal">
+    Inspect Full Scroll
+  </button>
+</header>
+
+<!-- Signature Move Part 1: Seamless Hanging Handscroll Bookmark & Elevation Rail -->
+<nav class="kc-scrollmap" data-kc-scrollmap aria-label="Watershed Elevation Map">
+  <div class="kc-scrollmap__meta">
+    <button type="button" class="kc-waypoint-btn" data-kc-jump="#act-summit" aria-current="true">高山天文台 · 2400m</button>
+    <button type="button" class="kc-waypoint-btn" data-kc-jump="#act-watershed">竹水車 · 1650m</button>
+    <button type="button" class="kc-waypoint-btn" data-kc-jump="#act-civic">編碼學院 · 1280m</button>
+    <button type="button" class="kc-waypoint-btn" data-kc-jump="#act-canopy">三愛生機亭 · 980m</button>
+    <button type="button" class="kc-waypoint-btn" data-kc-jump="#act-celebration">慶典大廳 · 120m</button>
+  </div>
+  <div class="kc-scrollmap__railcol">
+    <div class="kc-scrollmap__ribbon-row">
+      <div class="kc-scrollmap__scrollwrap" title="Click anywhere along the master scroll to travel">
+        <div class="kc-scrollmap__strip" id="kc-minimap-strip">
+          <img src="assets/master-scroll-minimap.webp" width="360" height="1451" alt="Miniature view of the Kindness City vertical scroll">
+          <svg class="kc-scrollmap__river" viewBox="0 0 44 196" preserveAspectRatio="none" aria-hidden="true">
+            <path id="kc-river-trace" d="M22,8 C21,28 24,42 22,58 C18,76 12,92 26,110 C32,126 22,142 22,162 C22,176 26,186 24,192"
+                  fill="none" stroke="#52E5C7" stroke-width="2.2" stroke-linecap="round"
+                  stroke-dasharray="220" stroke-dashoffset="190"/>
+          </svg>
+          <div class="kc-scrollmap__lens" id="kc-minimap-lens" aria-hidden="true"></div>
+        </div>
+      </div>
+      <svg class="kc-flora-spine" id="kc-flora-svg" viewBox="0 0 14 206" aria-hidden="true">
+        <line x1="7" y1="12" x2="7" y2="194" stroke="rgba(198,211,196,0.22)" stroke-width="1.1"/>
+        <g class="kc-flora-node" data-flora-at="0.02">
+          <circle cx="7" cy="20" r="3.6" fill="#52E5C7"/>
+          <path d="M7 20 C2.5 16, 1.8 12, 7 13" fill="#8CE563"/>
+        </g>
+        <g class="kc-flora-node" data-flora-at="0.22">
+          <circle cx="7" cy="62" r="3.6" fill="#8CE563"/>
+          <path d="M7 62 C11.5 58, 12.2 54, 7 55" fill="#52E5C7"/>
+        </g>
+        <g class="kc-flora-node" data-flora-at="0.46">
+          <circle cx="7" cy="104" r="3.8" fill="#8CE563"/>
+          <path d="M7 104 C2.5 100, 1.8 96, 7 97" fill="#8CE563"/>
+        </g>
+        <g class="kc-flora-node" data-flora-at="0.68">
+          <circle cx="7" cy="146" r="4" fill="#52E5C7"/>
+          <path d="M7 146 C11.5 142, 12.2 138, 7 139" fill="#F2B857"/>
+        </g>
+        <g class="kc-flora-node" data-flora-at="0.88">
+          <circle cx="7" cy="186" r="4.4" fill="#F2B857"/>
+          <path d="M7 186 C2.5 181, 1.8 177, 7 178" fill="#F2B857"/>
+        </g>
+      </svg>
+    </div>
+    <span class="kc-scrollmap__alt" id="kc-alt-readout">2,400m</span>
+  </div>
+</nav>
+
+<main id="top">
+
+  <!-- =======================================================================
+       ACT 1 · FRONT GATE & WONDER: 高山天文台 · Mountain Observatory (2,400m)
+       Device: scrub + 5 independent depth planes
+       ======================================================================= -->
+  <section id="act-summit" data-sc-act="scrub" data-sc-span="2.6" data-sc-dwell="0.34" data-sc-drift="#0E1714">
+    <div data-sc-stage>
+      <!-- Plane 1: Far Snow Peaks & Dawn Sky (visible through sky window of Plane 3) -->
+      <img class="kc-hero-plane kc-hero-plane--sky" src="assets/hero-plane-1-sky-peaks.webp"
+           width="1920" height="1080" alt="" data-sc-parallax="-0.65">
+
+      <!-- Plane 3: Midground Gorge & Scrubbing Waterfall Film (masked cleanly below sky horizon) -->
+      <picture class="kc-hero-mid">
+        <source media="(max-width: 860px)" srcset="assets/01-poster-p.webp">
+        <img class="sc-stage__poster kc-hero-mid" src="assets/01-poster.webp" width="1920" height="1080" alt="Dawn over the Mountain Observatory and alpine waterfall of Kindness City">
+      </picture>
+      <video class="kc-hero-mid" data-sc-scrub data-sc-src="assets/01-observatory.mp4"
+             data-sc-src-mobile="assets/01-observatory-m.mp4" muted playsinline></video>
+
+      <!-- Plane 2: Translucent Alpine Cloud Sea -->
+      <img class="kc-hero-plane kc-hero-plane--clouds" src="assets/hero-plane-2-cloud-sea.png"
+           width="1920" height="1080" alt="" data-sc-parallax="-0.42">
+
+      <!-- Plane 4: Focal Subject: Mountain Observatory anchored to its rocky cliff -->
+      <img class="kc-hero-plane kc-hero-plane--observatory" src="assets/hero-plane-4-observatory.png"
+           width="1920" height="1080" alt="" data-sc-parallax="-0.18">
+
+      <!-- Plane 5: Near Foreground Pine & Bamboo Canopy (solid below silhouette) -->
+      <img class="kc-hero-plane kc-hero-plane--fore" src="assets/hero-plane-5-fore-canopy.png"
+           width="1920" height="1080" alt="" data-sc-parallax="0.28">
+
+      <!-- Section floor fade above all parallax planes -->
+      <div class="kc-hero-floor" aria-hidden="true"></div>
+
+      <!-- Sibling scrim protecting lead copy contrast -->
+      <div class="sc-scrim sc-scrim--lead kc-hero-scrim" aria-hidden="true"></div>
+
+      <!-- Opening Beat (Greet cue: present at frame zero) -->
+      <div class="sc-copy sc-copy--lead kc-hero-copy" data-sc-cue="0 0.64 0 0.22">
+        <p class="sc-label">命好不如习惯好 · THE FRONT GATE · 2,400M</p>
+        <h1 class="sc-display sc-display--xl" data-sc-kinetic="lines">Good habits shape every tomorrow.</h1>
+        <p class="sc-body">You are not simply opening a website; you are stepping through the front gate into a living city where technology and nature coexist, and good habits matter more than good fortune.</p>
+        <div class="kc-hero-actions">
+          <a class="kc-cta" href="#act-watershed" data-kc-scroll="#act-watershed">Begin the Adventure</a>
+        </div>
+      </div>
+
+      <!-- Second Narrative Beat inside the Hero as the waterfall plunges -->
+      <div class="sc-copy kc-hero-beat2" data-sc-cue="0.62 0.96 0.18 0.16">
+        <h2>Technology Is Only an Enabler</h2>
+        <p>Like snowmelt guided by carved stone, Python programming is a practical tool that helps children cultivate positive thinking, discipline, creativity, perseverance, compassion, and responsibility.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =======================================================================
+       ACT 2 · HIGHLAND TO VALLEY WATERSHED: 7 Distinct Stations (ZERO Repetition)
+       Device: pan + tilt (6.2vh unhurried lateral travel)
+       ======================================================================= -->
+  <section id="act-watershed" data-sc-act="pan" data-sc-span="6.2" data-sc-drift="#13201B">
+    <div data-sc-stage class="kc-pan-stage">
+      <div class="kc-rail" data-sc-pan="0.06">
+
+        <div class="kc-rail__intro sc-stack">
+          <span class="sc-label">2,200m -> 1,350m · Seven Highland &amp; Valley Districts</span>
+          <h2 class="sc-display sc-display--md">Every landmark helps the city flourish.</h2>
+          <p class="sc-body">Walk unhurriedly through Kindness City asset by asset. Each living district pairs a Python building block with a positive daily habit.</p>
+        </div>
+
+        <article class="kc-rail__card" id="stop-welcome-plaza">
+          <div class="kc-rail__media" data-sc-tilt="6">
+            <img src="assets/pan-00-welcome-plaza.webp" width="1200" height="900" alt="Children walking beneath the carved cedar archway of Welcome Plaza beside a lotus rainwater fountain and bicycle lane">
+          </div>
+          <div class="kc-rail__body">
+            <span class="kc-rail__tag">迎賓廣場 · Welcome Plaza · 2,200m</span>
+            <h3>Print Output + Intention</h3>
+            <p>Stepping through the cedar front gate with clear greeting code, students replace autopilot with curious purpose.</p>
+            <span class="kc-rail__eco">Rainwater Fountain · Bicycle Paths · Green Buildings</span>
+          </div>
+        </article>
+
+        <article class="kc-rail__card" id="stop-curiosity-park">
+          <div class="kc-rail__media" data-sc-tilt="6">
+            <img src="assets/pan-06-curiosity-park.webp" width="1200" height="900" alt="Students on a curved forest boardwalk beside glass botanical spheres, wild birds, a stone owl, and butterflies">
+          </div>
+          <div class="kc-rail__body">
+            <span class="kc-rail__tag">好奇心公園 · Curiosity Park · 1,940m</span>
+            <h3>Comments + Wonder</h3>
+            <p>Elevated ridge boardwalks and botanical lenses invite children to ask brave questions and leave helpful # notes.</p>
+            <span class="kc-rail__eco">Wildlife Habitat · Tree Planting Area</span>
+          </div>
+        </article>
+
+        <article class="kc-rail__card" id="stop-green-energy">
+          <div class="kc-rail__media" data-sc-tilt="6">
+            <img src="assets/pan-01-waterwheel.webp" width="1200" height="900" alt="Handcrafted bamboo waterwheel lifting clear snowmelt into twin wooden aqueducts">
+          </div>
+          <div class="kc-rail__body">
+            <span class="kc-rail__tag">綠能驛站 · Green Energy Station · 1,650m</span>
+            <h3>While Loops + Discipline</h3>
+            <p>Turned steadily by mountain gravity without rush. Clean wind turbines and hydro loops prove quiet daily discipline outlasts luck.</p>
+            <span class="kc-rail__eco">Solar Panels · Wind Turbines · Clean Hydro</span>
+          </div>
+        </article>
+
+        <article class="kc-rail__card" id="stop-earth-garden">
+          <div class="kc-rail__media" data-sc-tilt="6">
+            <img src="assets/pan-02-nurseries.webp" width="1200" height="900" alt="Children planting pine and tea saplings along sunlit terraced nurseries fed by bamboo flumes">
+          </div>
+          <div class="kc-rail__body">
+            <span class="kc-rail__tag">大地花園 · Earth Garden · 1,560m</span>
+            <h3>Variables + Patient Care</h3>
+            <p>Stepped tree-planting terraces harvest rainwater tier by tier, teaching young citizens calm observation and hopeful foresight.</p>
+            <span class="kc-rail__eco">Tree Planting Area · Rainwater Harvesting</span>
+          </div>
+        </article>
+
+        <article class="kc-rail__card" id="stop-variable-village">
+          <div class="kc-rail__media" data-sc-tilt="6">
+            <img src="assets/pan-05-solvers.webp" width="1200" height="900" alt="Young explorers carrying sketchbooks alongside Little Ci through the shaded timber slope of Variable Village">
+          </div>
+          <div class="kc-rail__body">
+            <span class="kc-rail__tag">變數村 · Variable Village · 1,480m</span>
+            <h3>Debugging + Orderliness</h3>
+            <p>Connected by shaded bicycle paths and passive timber homes, explorers name supplies clearly so communities stay dependable.</p>
+            <span class="kc-rail__eco">Bicycle Paths · Green Buildings · Community Garden</span>
+          </div>
+        </article>
+
+        <article class="kc-rail__card" id="stop-loop-river">
+          <div class="kc-rail__media" data-sc-tilt="6">
+            <img src="assets/pan-03-loop-river.webp" width="1200" height="900" alt="The turquoise Loop River curving beneath an arched timber bridge and warm stone lanterns">
+          </div>
+          <div class="kc-rail__body">
+            <span class="kc-rail__tag">迴圈河 · Loop River · 1,410m</span>
+            <h3>For-In Iteration + Perseverance</h3>
+            <p>Every mossy river bend filters sediment through reeds, nourishing wild birds and showing learners how steady iteration refines every path.</p>
+            <span class="kc-rail__eco">Clean River · Wildlife Habitat</span>
+          </div>
+        </article>
+
+        <article class="kc-rail__card" id="stop-friendship-square">
+          <div class="kc-rail__media" data-sc-tilt="6">
+            <img src="assets/pan-04-little-ci.webp" width="1200" height="900" alt="Two round white Little Ci companion care-robots helping a child water roses and offering a warm lantern to an elder">
+          </div>
+          <div class="kc-rail__body">
+            <span class="kc-rail__tag">友誼廣場 · Friendship Square · 1,350m</span>
+            <h3>Functions + Compassion</h3>
+            <p>Students program Little Ci routines to help tend community rose beds and deliver warm tea, keeping neighbors first in every design.</p>
+            <span class="kc-rail__eco">Community Garden · Care Technology</span>
+          </div>
+        </article>
+
+        <div class="kc-rail__outro sc-stack">
+          <span class="sc-label">Citizen Habit</span>
+          <h3 class="sc-display sc-display--md">Kindness compounds downstream.</h3>
+          <p class="sc-body">Ahead lies the Civic Terrace and quiet old-growth woodland. Keep strolling down the path to visit every workshop and sanctuary.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =======================================================================
+       ACT 3 · STILLNESS (Quiet breath before the Peak): 編碼學院 & 生態資源回收站 (1,280m)
+       Device: flow + reveal + in + self-drawing architectural SVG
+       ======================================================================= -->
+  <section id="act-civic" class="kc-act-civic" data-sc-act="flow" data-sc-drift="#121E1A">
+    <div class="sc-wrap kc-civic-spread">
+
+      <div class="kc-civic-lead sc-stack" data-sc-in data-sc-stagger="65">
+        <h2 class="sc-display sc-display--lg">Two harvests from every lesson.</h2>
+        <p class="sc-lede">Every class in Kindness City leaves students with both a Python building block and a positive life habit they practice daily.</p>
+        <p class="sc-body">Inside the Coding Academy, learners build logic, creativity, and perseverance. Across the courtyard at the Eco-Recycling Pavilion, code serves neighbors and keeps soil and streams alive.</p>
+
+        <div class="kc-blueprint-box">
+          <svg class="kc-blueprint-svg" viewBox="0 0 520 180" fill="none" aria-label="Diagram linking Coding Academy Python skills with Eco-Recycling positive life habits">
+            <rect x="16" y="28" width="145" height="96" rx="8" stroke="#52E5C7" stroke-opacity="0.45" stroke-width="1.5"/>
+            <text x="32" y="58" fill="#F7F1E3" font-family="serif" font-size="15" font-weight="600">編碼學院</text>
+            <text x="32" y="80" fill="#C6D3C4" font-family="sans-serif" font-size="11">Python Concept</text>
+            <text x="32" y="102" fill="#52E5C7" font-family="monospace" font-size="10">Loops · Logic · Craft</text>
+
+            <rect x="358" y="28" width="146" height="96" rx="8" stroke="#EAB85C" stroke-opacity="0.55" stroke-width="1.5"/>
+            <text x="374" y="58" fill="#F7F1E3" font-family="serif" font-size="15" font-weight="600">好習慣工坊</text>
+            <text x="374" y="80" fill="#C6D3C4" font-family="sans-serif" font-size="11">Positive Life Habit</text>
+            <text x="374" y="102" fill="#EAB85C" font-family="monospace" font-size="10">Care · Empathy · Duty</text>
+
+            <path class="kc-trace-line" d="M161 58 C225 22, 295 22, 358 58" stroke="#52E5C7" stroke-width="2" stroke-linecap="round"/>
+            <path class="kc-trace-line" d="M358 96 C295 132, 225 132, 161 96" stroke="#EAB85C" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="260" cy="77" r="22" fill="#16241F" stroke="#52E5C7" stroke-width="1.5"/>
+            <text x="260" y="82" text-anchor="middle" fill="#F7F1E3" font-family="serif" font-size="13">三愛</text>
+            <text x="260" y="158" text-anchor="middle" fill="#C6D3C4" font-family="monospace" font-size="10">EVERY LESSON IMPROVES THE CITY · 1,280M</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="kc-civic-figures">
+        <figure class="kc-figure-frame" id="stop-coding-academy">
+          <div data-sc-reveal="up" data-sc-reveal-at="0.01 0.14">
+            <img src="assets/flow-coding-academy.webp" width="1440" height="960" alt="Open-veranda Coding Academy where students and mentors work with botanical Python flowcharts overlooking the bamboo stream">
+          </div>
+          <figcaption class="kc-figure-caption">
+            <strong>編碼學院 · Coding Academy · 1,280m</strong>
+            <span>Open-veranda studios where students practice positive thinking, discipline, and creative Python problem-solving.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="kc-figure-frame" id="stop-recycling-center">
+          <div data-sc-reveal="left" data-sc-reveal-at="0.06 0.22">
+            <img src="assets/flow-recycling-pavilion.webp" width="1440" height="960" alt="Moss-roofed Eco-Recycling Pavilion with skylights and five clean sorting bins where families sort leaves and glass">
+          </div>
+          <figcaption class="kc-figure-caption">
+            <strong>生態資源回收站 · Eco-Recycling Pavilion · 1,120m</strong>
+            <span>Where algorithmic classification meets real stewardship under a living fern-and-moss roof.</span>
+          </figcaption>
+        </figure>
+      </div>
+
+    </div>
+
+    <!-- Asset-by-Asset Stroll through the Civic Terrace, Woodland & Innovation Approach -->
+    <div class="sc-wrap kc-promenade" id="kc-promenade">
+      <div class="kc-promenade-head" data-sc-in>
+        <p class="sc-label">1,240m -> 1,010m · Travelling Through the Heart of Town</p>
+        <h3>Pass every living district along the footpath.</h3>
+        <p>Descend unhurriedly from riverside observation decks into the branching pinewood fork, maker verandas, and eco-pagoda leading toward the Bio-Canopy Plaza.</p>
+      </div>
+
+      <article class="kc-promenade-stop" id="stop-data-district" data-sc-in>
+        <figure class="kc-promenade-media" data-sc-reveal="up" data-sc-reveal-at="0.10 0.28">
+          <img src="assets/flow-data-district.webp" width="1440" height="960" alt="Riverside observation veranda of Data District where students classify stream pebbles, water levels, and rainfall counts" loading="lazy">
+        </figure>
+        <div class="kc-promenade-copy">
+          <span class="kc-promenade-elev">資料區 · Data District · 1,240m</span>
+          <h4>Measure Honestly Beside Clear Water</h4>
+          <p>Stream telemetry bells and open timber benches invite young detectives to measure rainfall, stones, and integers truthfully before drawing conclusions.</p>
+          <div class="kc-promenade-pair">
+            <div class="kc-pair-cell">
+              <span>Python Concept</span>
+              <strong>Data Types, Lists &amp; Operators</strong>
+            </div>
+            <div class="kc-pair-cell">
+              <span>Positive Habit</span>
+              <strong>Clarity &amp; Truthful Observation</strong>
+            </div>
+          </div>
+          <span class="kc-rail__eco">Clean River Gauges · Green Buildings</span>
+        </div>
+      </article>
+
+      <article class="kc-promenade-stop kc-promenade-stop--flip" id="stop-logic-forest" data-sc-in>
+        <figure class="kc-promenade-media" data-sc-reveal="right" data-sc-reveal-at="0.22 0.40">
+          <img src="assets/flow-logic-forest.webp" width="1440" height="960" alt="Ancient pine trail fork in Logic Forest lit by warm amber and emerald lanterns beside resting wildlife deer and foxes" loading="lazy">
+        </figure>
+        <div class="kc-promenade-copy">
+          <span class="kc-promenade-elev">邏輯森林 · Logic Forest · 1,180m</span>
+          <h4>Choose the Kindest Branch at Every Fork</h4>
+          <p>Under tall sunlit pines where deer and foxes rest safely beside young saplings, glowing trail lanterns remind travelers that wise boolean conditions protect all living neighbors.</p>
+          <div class="kc-promenade-pair">
+            <div class="kc-pair-cell">
+              <span>Python Concept</span>
+              <strong>Booleans, If / Else Choices</strong>
+            </div>
+            <div class="kc-pair-cell">
+              <span>Positive Habit</span>
+              <strong>Wise Decision-Making &amp; Empathy</strong>
+            </div>
+          </div>
+          <span class="kc-rail__eco">Tree Planting Area · Wildlife Habitat</span>
+        </div>
+      </article>
+
+      <article class="kc-promenade-stop" id="stop-creativity-workshop" data-sc-in>
+        <figure class="kc-promenade-media" data-sc-reveal="left" data-sc-reveal-at="0.34 0.52">
+          <img src="assets/flow-creativity-workshop.webp" width="1440" height="960" alt="Open-shutter timber Creativity Workshop with hanging bamboo wind chimes, kites, paper lanterns, and parked bamboo bicycles" loading="lazy">
+        </figure>
+        <div class="kc-promenade-copy">
+          <span class="kc-promenade-elev">創意工坊 · Creativity Workshop · 1,060m</span>
+          <h4>Turn Patient Craft Into Useful Delight</h4>
+          <p>With bicycle lanes curving outside, open folding shutters welcome young builders prototyping interactive chimes, storytelling input sketches, and solar lanterns for elders.</p>
+          <div class="kc-promenade-pair">
+            <div class="kc-pair-cell">
+              <span>Python Concept</span>
+              <strong>Interactive Input &amp; time.sleep()</strong>
+            </div>
+            <div class="kc-pair-cell">
+              <span>Positive Habit</span>
+              <strong>Originality &amp; Unhurried Patience</strong>
+            </div>
+          </div>
+          <span class="kc-rail__eco">Bicycle Paths · Solar Panels</span>
+        </div>
+      </article>
+
+      <article class="kc-promenade-stop kc-promenade-stop--flip" id="stop-innovation-tower" data-sc-in>
+        <figure class="kc-promenade-media" data-sc-reveal="up" data-sc-reveal-at="0.46 0.64">
+          <img src="assets/flow-innovation-tower.webp" width="1440" height="960" alt="Four-tier cedar and turquoise glass Innovation Tower topped with solar eaves, wind vanes, and cascading balcony greenery" loading="lazy">
+        </figure>
+        <div class="kc-promenade-copy">
+          <span class="kc-promenade-elev">創新之塔 · Innovation Tower · 1,010m</span>
+          <h4>Where Humane AI Meets Living Architecture</h4>
+          <p>Standing gracefully before the Three Loves Plaza, timber tiers wrapped in ivy and solar eaves celebrate technology built purely to elevate people and steward the Earth.</p>
+          <div class="kc-promenade-pair">
+            <div class="kc-pair-cell">
+              <span>Python Concept</span>
+              <strong>Python AI &amp; Ethical Helpers</strong>
+            </div>
+            <div class="kc-pair-cell">
+              <span>Positive Habit</span>
+              <strong>All Three Loves in Harmony</strong>
+            </div>
+          </div>
+          <span class="kc-rail__eco">Green Buildings · Solar Eaves · Clean Channels</span>
+        </div>
+      </article>
+    </div>
+
+    <!-- Expandable Kindness City Districts Atlas & Data-Driven 19-Lesson Curriculum -->
+    <div class="sc-wrap kc-sanctuary" id="kc-curriculum-sanctuary" data-sc-in data-sc-stagger="55">
+      <svg class="kc-flora-divider" viewBox="0 0 420 28" fill="none" aria-hidden="true">
+        <path class="kc-vine-grow" d="M4 20 C60 6, 120 24, 180 12 C240 2, 300 22, 360 10 C385 6, 405 14, 416 14" stroke="#8CE563" stroke-width="1.8" stroke-linecap="round"/>
+        <circle cx="88" cy="14" r="3.5" fill="#52E5C7"/>
+        <circle cx="212" cy="11" r="4" fill="#8CE563"/>
+        <circle cx="336" cy="14" r="3.5" fill="#F2B857"/>
+      </svg>
+
+      <div class="kc-sanctuary-head">
+        <div>
+          <p class="sc-label">DATA-DRIVEN CITY ATLAS · CURRICULUM.JSON</p>
+          <h2 class="sc-display sc-display--lg">Fifteen Districts. Nineteen Living Lessons.</h2>
+          <p class="sc-body">As you travel through Kindness City, habitats bloom and curriculum chapters unlock progressively. Select any value filter, district landmark, or learning chapter below.</p>
+        </div>
+        <div class="kc-love-filters" id="kc-love-filters" role="group" aria-label="Filter districts and lessons by Three Loves">
+          <button type="button" class="kc-filter-btn" data-filter-love="all" aria-pressed="true">All Values (19)</button>
+          <button type="button" class="kc-filter-btn" data-filter-love="self" aria-pressed="false">爱自己 · Self</button>
+          <button type="button" class="kc-filter-btn" data-filter-love="others" aria-pressed="false">爱别人 · Others</button>
+          <button type="button" class="kc-filter-btn" data-filter-love="earth" aria-pressed="false">爱地球 · Earth</button>
+        </div>
+      </div>
+
+      <div class="kc-sanctuary-grid">
+        <div class="kc-district-box" id="kc-districts-box">
+          <div class="kc-box-kicker">
+            <span>Kindness City Districts (15 Landmarks)</span>
+            <span id="kc-district-unlocked-label">Blooming on Scroll</span>
+          </div>
+          <div class="kc-district-strip" id="kc-district-strip" role="listbox" aria-label="Explore Kindness City Districts"></div>
+          <div class="kc-district-detail" id="kc-district-detail" aria-live="polite"></div>
+        </div>
+
+        <div class="kc-roadmap-box" id="kc-roadmap-box">
+          <div class="kc-box-kicker">
+            <span>Progressive Python + Habit Roadmap (L01 to L19)</span>
+            <span id="kc-chapter-progress-label">5 Learning Chapters</span>
+          </div>
+          <div class="kc-chapter-tabs" id="kc-chapter-tabs" role="tablist" aria-label="Curriculum Learning Chapters"></div>
+          <div id="kc-chapter-panel" role="tabpanel"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =======================================================================
+       ACT 4 · THE ENGINEERED PEAK (AWE): 三愛生機亭 · Three Loves Bio-Canopy (980m)
+       Device: scrub + pin + kinetic + bespoke [data-kc-canopy] attunement
+       Largest scroll span on the page (3.8vh, dwell 0.45)
+       ======================================================================= -->
+  <section id="act-canopy" data-sc-act="scrub" data-sc-span="4.1" data-sc-dwell="0.28" data-sc-drift="#081312">
+    <div data-sc-stage>
+      <picture>
+        <source media="(max-width: 860px)" srcset="assets/04-poster-p.webp">
+        <img class="sc-stage__poster" src="assets/04-poster.webp" width="1920" height="1080" alt="The Three Loves Bio-Canopy living tree dome glowing with bioluminescent light at the heart of Kindness City">
+      </picture>
+      <video data-sc-scrub data-sc-src="assets/04-biocanopy.mp4"
+             data-sc-src-mobile="assets/04-biocanopy-m.mp4" muted playsinline></video>
+
+      <!-- Plane 2: Floating Sky Lanterns (drifts upward after Attune card) -->
+      <img class="sc-stage__layer kc-canopy-lanterns" src="assets/canopy-sky-lanterns.png"
+           width="1920" height="1080" data-sc-parallax="-0.32" alt="" aria-hidden="true">
+
+      <!-- Plane 3: Foreground Willow Vines & Turquoise Blossoms (blooms & opens on scroll) -->
+      <img class="sc-stage__layer kc-canopy-vines" src="assets/canopy-fore-vines.png"
+           width="1920" height="1080" data-sc-parallax="0.34" alt="" aria-hidden="true">
+
+      <!-- Plane 4a: Live Bioluminescent Spores & Rising Blossom Sparks -->
+      <canvas class="kc-canopy-particles" id="kc-canopy-particles" aria-hidden="true"></canvas>
+
+      <!-- Plane 4b: Interactive Bioluminescent Sap Veins & Orbital Resonance Mandala SVG -->
+      <svg class="kc-canopy-overlay" id="kc-canopy-svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs>
+          <radialGradient id="kc-dome-aura" cx="56%" cy="46%" r="38%">
+            <stop offset="0%" stop-color="var(--kc-vow-color)" stop-opacity="0.46"/>
+            <stop offset="52%" stop-color="var(--kc-vow-color)" stop-opacity="0.14"/>
+            <stop offset="100%" stop-color="var(--kc-vow-color)" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <ellipse class="kc-canopy-aura" cx="1080" cy="490" rx="510" ry="375" fill="url(#kc-dome-aura)"/>
+        <g id="kc-canopy-veins" stroke="var(--kc-vow-color)" fill="none" stroke-linecap="round">
+          <path class="kc-vein" d="M 885 725 C 880 560, 955 415, 1082 325" stroke-width="2.4" pathLength="100"/>
+          <path class="kc-vein" d="M 1030 740 C 1020 570, 1065 440, 1110 295" stroke-width="2.2" pathLength="100"/>
+          <path class="kc-vein" d="M 1180 730 C 1175 565, 1120 430, 1062 295" stroke-width="2.2" pathLength="100"/>
+          <path class="kc-vein" d="M 1295 705 C 1275 555, 1195 420, 1082 330" stroke-width="2.0" pathLength="100"/>
+        </g>
+        <g id="kc-spore-ring" stroke="var(--kc-vow-color)" stroke-opacity="0.62" fill="none">
+          <circle class="kc-ring kc-ring--inner" cx="1080" cy="485" r="195" stroke-dasharray="6 10" stroke-width="2"/>
+          <circle class="kc-ring kc-ring--outer" cx="1080" cy="485" r="295" stroke-dasharray="3 14" stroke-width="1.6"/>
+          <circle class="kc-ring kc-ring--halo" cx="1080" cy="485" r="390" stroke-dasharray="2 18" stroke-width="1.3"/>
+        </g>
+      </svg>
+
+      <!-- Sibling scrim protecting all Peak copy cues (smoothly opens after Attune Card) -->
+      <div class="sc-scrim sc-scrim--lead kc-canopy-scrim" aria-hidden="true"></div>
+
+      <!-- Peak Window 1: Greet cue (closes cleanly before interactive console opens) -->
+      <div class="sc-copy sc-copy--lead kc-canopy-open" data-sc-cue="0 0.35 0 0.18">
+        <p class="sc-label">三愛生機亭 · 980m Heart of Kindness City</p>
+        <h2 class="sc-display sc-display--xl" data-sc-kinetic="lines">Three Loves that make every habit bloom.</h2>
+        <p>Every lesson reinforces <span style="white-space:nowrap">Love Yourself (爱自己)</span>, <span style="white-space:nowrap">Love Others (爱别人)</span>, and <span style="white-space:nowrap">Love the Earth (爱地球)</span>, awakening bioluminescent life across the plaza.</p>
+      </div>
+
+      <!-- Peak Window 2: Signature Move Attunement Console (exits at 0.70 so 0.70..1.00 awakens full canopy) -->
+      <div class="sc-copy kc-canopy-console" data-kc-canopy data-sc-cue="0.37 0.70 0.14 0.12">
+        <h3>Attune the Three Loves Bio-Canopy</h3>
+        <p>Select one of the Three Loves to preview its Python concept + positive habit pairing and inscribe your lantern at Celebration Hall.</p>
+
+        <div class="kc-loves-tabs" role="group" aria-label="Choose one of the Three Loves">
+          <button type="button" class="kc-love-btn" data-love-id="self" data-love-color="#52E5C7"
+                  data-love-title="爱自己 · Love Yourself"
+                  data-love-quest="Python: while Habit Loop | Habit: Positive Thinking &amp; Discipline"
+                  data-love-vow="I will practice steady good habits and greet challenges with patience."
+                  aria-pressed="true">
+            <strong>爱自己 · Love Yourself</strong>
+            <span>Positive Thinking &amp; Discipline</span>
+          </button>
+
+          <button type="button" class="kc-love-btn" data-love-id="others" data-love-color="#F2B857"
+                  data-love-title="爱别人 · Love Others"
+                  data-love-quest="Python: def care() Functions | Habit: Compassion &amp; Collaboration"
+                  data-love-vow="I will use technology with kindness to help others and uplift my community."
+                  aria-pressed="false">
+            <strong>爱别人 · Love Others</strong>
+            <span>Compassion &amp; Kindness</span>
+          </button>
+
+          <button type="button" class="kc-love-btn" data-love-id="earth" data-love-color="#8CE563"
+                  data-love-title="爱地球 · Love the Earth"
+                  data-love-quest="Python: if/elif Eco Sensor | Habit: Responsibility &amp; Eco-Care"
+                  data-love-vow="I will protect rivers, soil, and living forests with daily responsibility."
+                  aria-pressed="false">
+            <strong>爱地球 · Love the Earth</strong>
+            <span>Responsibility &amp; Earth Care</span>
+          </button>
+        </div>
+
+        <div class="kc-quest-strip" id="kc-quest-line">
+          Python: while Habit Loop | Habit: Positive Thinking &amp; Discipline
+        </div>
+
+        <div class="kc-vow-field">
+          <label for="kc-vow-input">Your Pledge:</label>
+          <input type="text" id="kc-vow-input" class="kc-vow-input" maxlength="78"
+                 value="I will practice steady good habits and greet challenges with patience.">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =======================================================================
+       ACT 5 · COMMITMENT & BELONGING: 慶典大廳 · Lotus Bridges & 迎向未來 (120m)
+       Device: pin + spotlight + magnet (One-value hold cues, footer inside stage)
+       ======================================================================= -->
+  <section id="act-celebration" data-sc-act="pin" data-sc-span="1.4" data-sc-drift="#0E1714">
+    <div data-sc-stage class="kc-close-stage" data-sc-spotlight>
+      <picture>
+        <source media="(max-width: 860px)" srcset="assets/05-celebration-hall-p.webp">
+        <img class="sc-stage__poster" src="assets/05-celebration-hall.webp" width="1920" height="1080" alt="Lantern-lit Celebration Hall beside twin wooden bridges crossing a blooming pink lotus pond">
+      </picture>
+
+      <!-- Sibling scrim for the close stage -->
+      <div class="sc-scrim sc-scrim--band kc-close-scrim" aria-hidden="true"></div>
+
+      <!-- Interactive floating lanterns canvas -->
+      <canvas class="kc-lantern-canvas" id="kc-lantern-canvas" aria-hidden="true"></canvas>
+
+      <div class="kc-close-inner">
+        <div class="kc-close-copy" data-sc-cue="0.06">
+          <h2 class="sc-display sc-display--lg" data-sc-kinetic="lines">Acts of kindness make the city flourish.</h2>
+          <p>At Celebration Hall, every lesson learned brightens the evening lotus pond. Release your lantern to begin your Kindness City adventure, or download your Pilgrim Scroll Seal.</p>
+          <div class="kc-close-cta-row">
+            <a class="kc-cta" href="#act-celebration" id="kc-release-lantern-btn"
+               data-sc-magnet="0.26" data-sc-cue="0.06" data-sc-rise="0">Light Your Lantern</a>
+            <button type="button" class="kc-secondary-btn" id="kc-download-seal-btn">
+              Download Scroll Seal (.png)
+            </button>
+          </div>
+        </div>
+
+        <aside class="kc-passport-card" data-sc-cue="0.06" aria-label="Pilgrim Scroll Seal Preview">
+          <div class="kc-passport-head">
+            <strong id="kc-seal-heading">爱自己 · Love Yourself</strong>
+            <span class="kc-passport-seal">命好不如习惯好</span>
+          </div>
+          <div class="kc-passport-body">
+            <p class="kc-passport-vow" id="kc-seal-vow">"I will practice steady good habits and greet challenges with patience."</p>
+            <p class="kc-passport-quest" id="kc-seal-quest">Python: while Habit Loop | Habit: Positive Thinking &amp; Discipline</p>
+            <p class="kc-passport-status" id="kc-seal-status">120m Estuary · 1 Lantern Lit in Celebration Hall</p>
+          </div>
+        </aside>
+      </div>
+
+      <footer class="kc-footer">
+        <span>善心之城 · Kindness City · 命好不如习惯好</span>
+        <span>Good habits matter more than good fortune · Love Yourself · Love Others · Love the Earth</span>
+      </footer>
+    </div>
+  </section>
+
+</main>
+
+<!-- Full Master Scroll Atlas Modal -->
+<div class="kc-atlas-modal" id="atlas-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="atlas-modal-title">
+  <div class="kc-atlas-dialog">
+    <div class="kc-atlas-header">
+      <strong id="atlas-modal-title" class="sc-display" style="font-size: var(--sc-t-lg);">善心之城 · Complete Master Scroll Atlas (2048 × 8256)</strong>
+      <button type="button" class="kc-atlas-btn" id="close-atlas-btn">Close Atlas (Esc)</button>
+    </div>
+    <div class="kc-atlas-scroll-body">
+      <div class="kc-atlas-legend">
+        <p class="sc-body">Select any landmark along the painted scroll to jump directly to its elevation on the page:</p>
+        <button type="button" class="kc-atlas-stop" data-atlas-jump="#act-summit">
+          <strong>1. 高山天文台 · Mountain Observatory (2,400m)</strong>
+          <span>Alpine dawn peaks, brass telescope, and snowmelt waterfall.</span>
+        </button>
+        <button type="button" class="kc-atlas-stop" data-atlas-jump="#act-watershed">
+          <strong>2. 竹水車 · 梯田育苗園 · 迴圈河 · 小慈 (1,650m)</strong>
+          <span>Bamboo waterwheel, terraced nurseries, Loop River, Little Ci care-bots, and young problem-solvers.</span>
+        </button>
+        <button type="button" class="kc-atlas-stop" data-atlas-jump="#act-civic">
+          <strong>3. 編碼學院 &amp; 生態資源回收站 (1,280m)</strong>
+          <span>Coding Academy and 5-stream Eco-Recycling Pavilion where Python and positive habits grow together.</span>
+        </button>
+        <button type="button" class="kc-atlas-stop" data-atlas-jump="#act-canopy">
+          <strong>4. 三愛生機亭 · Three Loves Bio-Canopy (980m)</strong>
+          <span>Bioluminescent living dome celebrating Love Yourself (爱自己), Love Others (爱别人), and Love the Earth (爱地球).</span>
+        </button>
+        <button type="button" class="kc-atlas-stop" data-atlas-jump="#act-celebration">
+          <strong>5. 慶典大廳 · Celebration Hall &amp; 迎向未來 (120m)</strong>
+          <span>Lantern ceremony above the lotus pond where acts of kindness help the city flourish.</span>
+        </button>
+      </div>
+      <div>
+        <img src="assets/master-scroll-atlas.webp" width="1280" height="5160" loading="lazy" alt="Complete unbroken vertical scroll illustration of Kindness City from Mountain Observatory to Celebration Hall">
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="application/json" id="kc-curriculum-fallback">{"schemaVersion":"1.0.0","city":{"nameZh":"善心之城","nameEn":"Kindness City","mottoZh":"命好不如習慣好","mottoEn":"Good habits matter more than good fortune.","coreVision":"Technology is only an enabler. Good habits create lasting success. Programming helps children cultivate positive thinking, discipline, creativity, perseverance, compassion, and responsibility.","threeLoves":[{"id":"self","labelZh":"爱自己","labelEn":"Love Yourself","color":"#52E5C7","focus":"Positive thinking, daily discipline, calm debugging, and lifelong curiosity."},{"id":"others","labelZh":"爱别人","labelEn":"Love Others","color":"#F2B857","focus":"Compassion, teamwork, listening carefully, and building helpful tools for neighbors."},{"id":"earth","labelZh":"爱地球","labelEn":"Love the Earth","color":"#8CE563","focus":"Responsibility, ecological stewardship, clean water, renewable energy, and living forests."}]},"districts":[{"id":"welcome-plaza","nameEn":"Welcome Plaza","nameZh":"迎賓廣場","elevation":"2,200m · Front Gate","love":"self","unlockAt":0.08,"image":"assets/pan-00-welcome-plaza.webp","pythonTheme":"First Output & Clear Intention","habitTheme":"Welcoming Curiosity & Good Routine","ecoElements":["Rainwater Harvesting Fountain","Green Buildings","Bicycle Paths"],"description":"Every adventure starts at the carved cedar Welcome Plaza, where students step off daily autopilot beside rainwater fountains and shaded bike lanes.","actAnchor":"#act-watershed"},{"id":"function-mountain","nameEn":"Function Mountain","nameZh":"函式山嶺","elevation":"2,400m · Summit","love":"self","unlockAt":0.0,"image":"assets/01-poster.webp","pythonTheme":"Functions & Modular Thinking","habitTheme":"Purpose & Long-Term Perspective","ecoElements":["Clean River Source","Solar Panels","Wildlife Habitat"],"description":"High above the mist stands the brass observatory atop Function Mountain, organizing small repeatable helper routines that feed clear water downstream.","actAnchor":"#act-summit"},{"id":"curiosity-park","nameEn":"Curiosity Park","nameZh":"好奇心公園","elevation":"1,940m · High Ridge","love":"self","unlockAt":0.14,"image":"assets/pan-06-curiosity-park.webp","pythonTheme":"Syntax Exploration & Comments","habitTheme":"Wonder, Questions & Calm Observation","ecoElements":["Wildlife Habitat","Tree Planting Area"],"description":"Botanical boardwalks and brass lenses invite learners to ask bold questions, trace how ecosystems connect, and document every discovery clearly.","actAnchor":"#act-watershed"},{"id":"green-energy-station","nameEn":"Green Energy Station","nameZh":"綠能驛站 · 竹水車","elevation":"1,650m · Gorge Aqueduct","love":"earth","unlockAt":0.2,"image":"assets/pan-01-waterwheel.webp","pythonTheme":"Steady Loops & Renewable Cycles","habitTheme":"Consistency Over Luck","ecoElements":["Solar Panels","Wind Turbines","Clean River Hydro"],"description":"Crafted beside the Bamboo Waterwheel, ridge-top wind turbines and tiled solar eaves transform natural sunlight and river flow into clean city power.","actAnchor":"#act-watershed"},{"id":"earth-garden","nameEn":"Earth Garden","nameZh":"大地花園 · 梯田育苗園","elevation":"1,560m · Terraced Hills","love":"earth","unlockAt":0.25,"image":"assets/pan-02-nurseries.webp","pythonTheme":"Variables & Soil Sensing","habitTheme":"Patience & Nurturing Growth","ecoElements":["Tree Planting Area","Community Garden","Rainwater Harvesting"],"description":"Stepped contour seedling beds fed by bamboo flumes store every monsoon drop carefully before returning clear water to the watershed below.","actAnchor":"#act-watershed"},{"id":"variable-village","nameEn":"Variable Village","nameZh":"變數村","elevation":"1,480m · Timber Slope","love":"self","unlockAt":0.3,"image":"assets/pan-05-solvers.webp","pythonTheme":"Variables, Naming & State Practice","habitTheme":"Orderliness & Self-Awareness","ecoElements":["Bicycle Paths","Green Buildings","Community Garden"],"description":"Solar-roofed timber cottages linked by shaded bicycle lanes where citizens learn how clear names keep household supplies and code dependable.","actAnchor":"#act-watershed"},{"id":"loop-river","nameEn":"Loop River","nameZh":"迴圈河","elevation":"1,410m · Valley Bend","love":"earth","unlockAt":0.35,"image":"assets/pan-03-loop-river.webp","pythonTheme":"For Loops & Continuous Iteration","habitTheme":"Perseverance & Steady Reflection","ecoElements":["Clean River","Wildlife Habitat","Rainwater Harvesting"],"description":"An S-curve waterway filtered by river reeds and stone shoals that teaches students how thoughtful repetition keeps both creeks and skills pure.","actAnchor":"#act-watershed"},{"id":"friendship-square","nameEn":"Friendship Square","nameZh":"友誼廣場 · 小慈","elevation":"1,350m · Veranda Way","love":"others","unlockAt":0.4,"image":"assets/pan-04-little-ci.webp","pythonTheme":"Reusable Care Routines & Lists","habitTheme":"Compassion, Service & Teamwork","ecoElements":["Community Garden","Bicycle Paths"],"description":"Neighborly verandas where Little Ci care-bots help children water roses for elders and deliver warm tea without replacing human kindness.","actAnchor":"#act-watershed"},{"id":"coding-academy","nameEn":"Coding Academy","nameZh":"編碼學院","elevation":"1,280m · Civic Terrace","love":"self","unlockAt":0.45,"image":"assets/flow-coding-academy.webp","pythonTheme":"Core Python Craft & Debugging","habitTheme":"Positive Thinking & Problem-Solving","ecoElements":["Green Buildings","Solar Panels","Clean River View"],"description":"Open cedar studios overlooking the bamboo gorge where programming serves strictly as an enabler for empathy, honesty, and practical wisdom.","actAnchor":"#stop-coding-academy"},{"id":"data-district","nameEn":"Data District","nameZh":"資料區","elevation":"1,240m · Civic Terrace","love":"self","unlockAt":0.49,"image":"assets/flow-data-district.webp","pythonTheme":"Data Types, Lists & Operators","habitTheme":"Clarity, Honesty & Truthful Observation","ecoElements":["Clean River Gauges","Green Buildings"],"description":"River telemetry bells and type-classification workbenches help young detectives measure rainfall accurately instead of guessing blindly.","actAnchor":"#stop-data-district"},{"id":"logic-forest","nameEn":"Logic Forest","nameZh":"邏輯森林","elevation":"1,180m · Old Growth Grove","love":"others","unlockAt":0.53,"image":"assets/flow-logic-forest.webp","pythonTheme":"Booleans, If / Else Choices","habitTheme":"Wise Decision-Making & Responsibility","ecoElements":["Tree Planting Area","Wildlife Habitat"],"description":"Quiet branching woodland trails under tall pines where learners trace conditions step by step to choose the safest, kindest fork.","actAnchor":"#stop-logic-forest"},{"id":"recycling-center","nameEn":"Recycling Center","nameZh":"生態資源回收站","elevation":"1,120m · Civic Courtyard","love":"earth","unlockAt":0.57,"image":"assets/flow-recycling-pavilion.webp","pythonTheme":"Conditional Sorting & Classification","habitTheme":"Zero-Waste Stewardship","ecoElements":["Recycling Center","Green Buildings","Rainwater Harvesting"],"description":"Beneath a flowering moss-and-fern living roof, families sort paper, glass, compost, metal, and timber so nothing helpful ever becomes trash.","actAnchor":"#stop-recycling-center"},{"id":"creativity-workshop","nameEn":"Creativity Workshop","nameZh":"創意工坊","elevation":"1,060m · Plaza Rim","love":"self","unlockAt":0.61,"image":"assets/flow-creativity-workshop.webp","pythonTheme":"Interactive Input & Timing Art","habitTheme":"Originality & Joyful Experimentation","ecoElements":["Bicycle Paths","Solar Panels"],"description":"A sunlit timber studio where students blend time delays, storytelling input, and hand sketches to prototype helpful inventions for neighbors.","actAnchor":"#stop-creativity-workshop"},{"id":"innovation-tower","nameEn":"Innovation Tower","nameZh":"創新之塔","elevation":"1,010m · Plaza Approach","love":"earth","unlockAt":0.65,"image":"assets/flow-innovation-tower.webp","pythonTheme":"Python AI & Ethical Stewardship","habitTheme":"All Three Loves In Harmony","ecoElements":["Green Buildings","Tree Planting Area","Solar Bio-Canopy"],"description":"Rising above clean water channels before the central Bio-Canopy, this living cedar pagoda unites solar eave craft with humane AI stewardship.","actAnchor":"#stop-innovation-tower"},{"id":"celebration-hall","nameEn":"Celebration Hall","nameZh":"慶典大廳 · 迎向未來","elevation":"120m · Lotus Estuary","love":"others","unlockAt":0.86,"image":"assets/05-celebration-hall.webp","pythonTheme":"Real-World Projects & Sharing","habitTheme":"Gratitude, Belonging & Lasting Action","ecoElements":["Clean River","Wildlife Habitat","Community Garden"],"description":"Across twin bridges over the blooming pink lotus pond, every completed lesson illuminates a celebratory lantern that brightens all of Kindness City.","actAnchor":"#act-celebration"}],"chapters":[{"id":"chapter-1","order":1,"title":"Chapter I · Stepping Through the Gate","subtitle":"Foundations, Voice & Intentional Craft","districtIds":["welcome-plaza","coding-academy","curiosity-park"],"districtLabel":"Welcome Plaza · Coding Academy · Curiosity Park","love":"self","unlockAt":0.0,"summary":"Begin the adventure by speaking clearly to the computer and organizing clean, respectful habits before writing larger programs.","lessons":[{"number":1,"code":"L01","title":"Python + print()","branch":"module/l1_pyprint","districtId":"welcome-plaza","love":"self","pythonConcept":"print() output strings and greeting messages","positiveHabit":"Positive Thinking: Speak encouraging words to yourself and others at the start of every task."},{"number":2,"code":"L02","title":"Coding Environment + Function + Comment","branch":"module/l2_env_func_comment","districtId":"coding-academy","love":"self","pythonConcept":"Workspace setup, starter functions, and # comments","positiveHabit":"Discipline: Keep tools neat and leave thoughtful explanations so teammates can follow easily."}]},{"id":"chapter-2","order":2,"title":"Chapter II · Naming & Observing Our World","subtitle":"Memory Containers, Measurements & Truthful Types","districtIds":["variable-village","earth-garden","data-district"],"districtLabel":"Variable Village · Earth Garden · Data District","love":"earth","unlockAt":0.18,"summary":"Learn how clean variable names and accurate data types mirror caring stewardship across nurseries, rainfall basins, and stream gauges.","lessons":[{"number":3,"code":"L03","title":"Variable","branch":"module/l3_variable","districtId":"variable-village","love":"self","pythonConcept":"Assigning clear, memorable variable labels","positiveHabit":"Orderliness: Label what matters clearly so nothing gets lost or wasted."},{"number":4,"code":"L04","title":"Variable Practice","branch":"module/l4_var_practice","districtId":"earth-garden","love":"earth","pythonConcept":"Updating variables as saplings and water levels change","positiveHabit":"Patient Stewardship: Notice small daily growth in gardens and good routines."},{"number":5,"code":"L05","title":"Data Types","branch":"module/l5_data_types","districtId":"data-district","love":"earth","pythonConcept":"Integers, floats, strings, and booleans","positiveHabit":"Honest Observation: Measure the world accurately before jumping to conclusions."},{"number":6,"code":"L06","title":"Data Type Detective","branch":"module/l6_datatype_detective","districtId":"curiosity-park","love":"self","pythonConcept":"Inspecting and converting mismatched data with type()","positiveHabit":"Curiosity & Problem-Solving: Investigate errors calmly instead of giving up."}]},{"id":"chapter-3","order":3,"title":"Chapter III · Clear Arithmetic & Kind Choices","subtitle":"Comparing Facts, Sorting Streams & Branching Wisely","districtIds":["data-district","logic-forest","recycling-center"],"districtLabel":"Data District · Logic Forest · Recycling Center","love":"earth","unlockAt":0.34,"summary":"Pair mathematical balance and boolean fairness with real-world decisions that protect streams, wildlife, and zero-waste sorting stations.","lessons":[{"number":7,"code":"L07","title":"Arithmetic Operators","branch":"module/l7_arithmetic_ops","districtId":"green-energy-station","love":"earth","pythonConcept":"Addition, subtraction, division, and remainder helpers","positiveHabit":"Fair Sharing: Balance solar energy and rainwater evenly across every terrace."},{"number":8,"code":"L08","title":"Comparison Operators","branch":"module/l8_comparison_ops","districtId":"data-district","love":"others","pythonConcept":"Testing equality and thresholds (==, >, <, >=)","positiveHabit":"Fairness: Check facts objectively rather than judging by rumors."},{"number":9,"code":"L09","title":"Comparison + Boolean","branch":"module/l9_compare_bool","districtId":"logic-forest","love":"self","pythonConcept":"Combining True/False logic with and, or, not","positiveHabit":"Thoughtful Judgment: Look at both need and impact before taking action."},{"number":10,"code":"L10","title":"If","branch":"module/l10_if","districtId":"logic-forest","love":"others","pythonConcept":"Triggering protective actions when a condition holds","positiveHabit":"Proactive Helpfulness: Step in kindly whenever you spot a classmate in need."},{"number":11,"code":"L11","title":"If / Else","branch":"module/l11_if_else","districtId":"recycling-center","love":"earth","pythonConcept":"Routing two-branch outcomes cleanly","positiveHabit":"Responsibility: Sort every resource thoughtfully under the living moss roof."}]},{"id":"chapter-4","order":4,"title":"Chapter IV · Rivers, Rhythm & Shared Lists","subtitle":"Repetition With Purpose, Pacing & Community Care","districtIds":["loop-river","friendship-square","earth-garden"],"districtLabel":"Loop River · Friendship Square · Earth Garden","love":"others","unlockAt":0.5,"summary":"Let loops and lists carry steady kindness down the Loop River, pairing patience and unhurried timing with team care routines.","lessons":[{"number":12,"code":"L12","title":"For Loop","branch":"module/l12_for_loop","districtId":"loop-river","love":"earth","pythonConcept":"Repeating predictable steps across a counted range","positiveHabit":"Steady Consistency: Good habits practiced daily outshine rare bursts of effort."},{"number":13,"code":"L13","title":"For Loop Challenge + time.sleep()","branch":"module/l13_for_loop_sleep","districtId":"creativity-workshop","love":"self","pythonConcept":"Controlling rhythm, reflection pauses, and timed steps","positiveHabit":"Patience & Mindfulness: Pause and breathe calmly between big steps."},{"number":14,"code":"L14","title":"List","branch":"module/l14_list","districtId":"friendship-square","love":"others","pythonConcept":"Gathering items, neighbors, and supplies in ordered lists","positiveHabit":"Inclusiveness: Make sure no friend, elder, or sapling is left off the list."},{"number":15,"code":"L15","title":"List + For Loop","branch":"module/l15_list_for_loop","districtId":"friendship-square","love":"others","pythonConcept":"Visiting every element in a list systematically","positiveHabit":"Compassion in Action: Check on every neighbor along the garden path one by one."}]},{"id":"chapter-5","order":5,"title":"Chapter V · Perseverance, Listening & Kind AI","subtitle":"While Goals, Human Dialogue & Ethical Innovation","districtIds":["function-mountain","innovation-tower","celebration-hall"],"districtLabel":"Function Mountain · Innovation Tower · Celebration Hall","love":"others","unlockAt":0.68,"summary":"Combine persistent while loops, attentive human input, and humane Python AI projects that serve people and protect the Earth.","lessons":[{"number":16,"code":"L16","title":"While Loop","branch":"module/l16_while_loop","districtId":"green-energy-station","love":"self","pythonConcept":"Condition-driven persistence until a clean milestone finishes","positiveHabit":"Perseverance: Keep gently trying and refining until your goal is reached."},{"number":17,"code":"L17","title":"While Loop Challenge","branch":"module/l17_while_challenge","districtId":"function-mountain","love":"self","pythonConcept":"Preventing infinite loops and debugging guard conditions","positiveHabit":"Self-Reflection: Check your own habits when stuck instead of blaming others."},{"number":18,"code":"L18","title":"Input + Interactive Program","branch":"module/l18_input_interactive","districtId":"celebration-hall","love":"others","pythonConcept":"Listening to user input() and answering thoughtfully","positiveHabit":"Empathy & Listening: Ask first and listen closely before trying to help."},{"number":19,"code":"L19","title":"Python AI Challenge","branch":"module/l19_ai_challenge","districtId":"innovation-tower","love":"earth","pythonConcept":"Designing humane, rule-and-data-assisted AI helpers","positiveHabit":"Responsible Problem-Solving: Always steer technology to love self, others, and the Earth."}]}]}</script>
+<script src="scrollcraft.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  var LOVE_META = {
+    self: { label: '爱自己 · Love Yourself', color: '#52E5C7' },
+    others: { label: '爱别人 · Love Others', color: '#F2B857' },
+    earth: { label: '爱地球 · Love the Earth', color: '#8CE563' }
+  };
+
+  var cState = {
+    rawJson: '',
+    data: null,
+    filterLove: 'all',
+    activeDistrictId: 'welcome-plaza',
+    activeChapterId: 'chapter-1',
+    scrollP: 0
+  };
+
+  var districtStrip = document.getElementById('kc-district-strip');
+  var districtDetail = document.getElementById('kc-district-detail');
+  var chapterTabs = document.getElementById('kc-chapter-tabs');
+  var chapterPanel = document.getElementById('kc-chapter-panel');
+  var distUnlockedLbl = document.getElementById('kc-district-unlocked-label');
+  var chapProgLbl = document.getElementById('kc-chapter-progress-label');
+  var filterBtns = Array.prototype.slice.call(document.querySelectorAll('#kc-love-filters [data-filter-love]'));
+
+  function makeEl(tag, cls, text) {
+    var el = document.createElement(tag);
+    if (cls) el.className = cls;
+    if (text !== undefined && text !== null) el.textContent = text;
+    return el;
+  }
+
+  function renderDistrictDetail(d) {
+    if (!districtDetail || !d) return;
+    districtDetail.textContent = '';
+
+    if (d.image) {
+      var media = makeEl('div', 'kc-district-detail__media');
+      var img = document.createElement('img');
+      img.src = d.image;
+      img.alt = d.nameEn + ' illustrated landmark in Kindness City';
+      img.loading = 'lazy';
+      media.appendChild(img);
+      districtDetail.appendChild(media);
+    }
+
+    var top = makeEl('div', 'kc-district-detail__top');
+    top.appendChild(makeEl('h3', '', d.nameZh + ' · ' + d.nameEn));
+    var lm = LOVE_META[d.love] || LOVE_META.self;
+    var meta = makeEl('span', 'kc-district-meta', d.elevation + ' · ' + lm.label);
+    meta.style.color = lm.color;
+    top.appendChild(meta);
+    if (d.actAnchor) {
+      var jump = makeEl('button', 'kc-district-jump', 'Visit Stop');
+      jump.type = 'button';
+      jump.addEventListener('click', function () {
+        var el = document.querySelector(d.actAnchor);
+        if (el) el.scrollIntoView({ behavior: ScrollCraft.reduce ? 'instant' : 'smooth', block: 'center' });
+      });
+      top.appendChild(jump);
+    }
+    districtDetail.appendChild(top);
+
+    districtDetail.appendChild(makeEl('p', 'kc-district-desc', d.description));
+
+    var pair = makeEl('div', 'kc-district-pair');
+    var c1 = makeEl('div', 'kc-pair-cell');
+    c1.appendChild(makeEl('span', '', 'Python Concept'));
+    c1.appendChild(makeEl('strong', '', d.pythonTheme));
+    var c2 = makeEl('div', 'kc-pair-cell');
+    c2.appendChild(makeEl('span', '', 'Positive Habit'));
+    c2.appendChild(makeEl('strong', '', d.habitTheme));
+    pair.appendChild(c1);
+    pair.appendChild(c2);
+    districtDetail.appendChild(pair);
+
+    var ecoWrap = makeEl('div', 'kc-eco-tags');
+    (d.ecoElements || []).forEach(function (eco) {
+      ecoWrap.appendChild(makeEl('span', 'kc-eco-tag', eco));
+    });
+    districtDetail.appendChild(ecoWrap);
+  }
+
+  function renderActiveChapter() {
+    if (!cState.data || !chapterPanel) return;
+    var chapters = cState.data.chapters || [];
+    var chap = null;
+    for (var i = 0; i < chapters.length; i++) {
+      if (chapters[i].id === cState.activeChapterId) { chap = chapters[i]; break; }
+    }
+    if (!chap && chapters.length) chap = chapters[0];
+    if (!chap) return;
+
+    chapterPanel.textContent = '';
+    var head = makeEl('div', 'kc-chapter-header');
+    head.appendChild(makeEl('h3', '', chap.title));
+    head.appendChild(makeEl('p', '', chap.districtLabel + ' · ' + chap.summary));
+    chapterPanel.appendChild(head);
+
+    var list = makeEl('div', 'kc-lesson-list');
+    var distMap = {};
+    (cState.data.districts || []).forEach(function (d) { distMap[d.id] = d; });
+
+    var lessons = (chap.lessons || []).filter(function (L) {
+      return cState.filterLove === 'all' || L.love === cState.filterLove;
+    });
+    if (!lessons.length) lessons = chap.lessons || [];
+
+    lessons.forEach(function (L) {
+      var row = makeEl('div', 'kc-lesson-row');
+      var lm = LOVE_META[L.love] || LOVE_META.self;
+
+      var code = makeEl('span', 'kc-lesson-code', L.code);
+      code.style.background = lm.color;
+      row.appendChild(code);
+
+      var main = makeEl('div', 'kc-lesson-main');
+      main.appendChild(makeEl('strong', '', 'Lesson ' + L.number + ' · ' + L.title));
+      main.appendChild(makeEl('span', '', 'Python: ' + L.pythonConcept + ' | Habit: ' + L.positiveHabit));
+      row.appendChild(main);
+
+      var meta = makeEl('div', 'kc-lesson-meta');
+      var distObj = distMap[L.districtId];
+      if (distObj) {
+        var distBtn = makeEl('button', 'kc-lesson-dist-btn', distObj.nameEn);
+        distBtn.type = 'button';
+        distBtn.addEventListener('click', function () {
+          cState.activeDistrictId = distObj.id;
+          renderDistrictsAndChapters();
+        });
+        meta.appendChild(distBtn);
+      }
+      meta.appendChild(makeEl('code', 'kc-branch-pill', L.branch));
+      row.appendChild(meta);
+
+      list.appendChild(row);
+    });
+
+    chapterPanel.appendChild(list);
+  }
+
+  function renderDistrictsAndChapters() {
+    if (!cState.data) return;
+    var districts = cState.data.districts || [];
+    var chapters = cState.data.chapters || [];
+    var reduce = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+    var p = reduce ? 1 : cState.scrollP;
+
+    var filteredDistricts = districts.filter(function (d) {
+      return cState.filterLove === 'all' || d.love === cState.filterLove;
+    });
+    if (!filteredDistricts.length) filteredDistricts = districts;
+
+    var foundActiveDist = filteredDistricts.some(function (d) { return d.id === cState.activeDistrictId; });
+    if (!foundActiveDist && filteredDistricts.length) {
+      cState.activeDistrictId = filteredDistricts[0].id;
+    }
+
+    if (districtStrip) {
+      districtStrip.textContent = '';
+      var activeDist = filteredDistricts[0];
+      filteredDistricts.forEach(function (d) {
+        var btn = makeEl('button', 'kc-district-chip');
+        btn.type = 'button';
+        btn.setAttribute('role', 'option');
+        if (d.image) {
+          var th = document.createElement('img');
+          th.className = 'kc-district-thumb';
+          th.src = d.image;
+          th.alt = '';
+          th.loading = 'lazy';
+          btn.appendChild(th);
+        }
+        btn.appendChild(makeEl('span', '', d.nameZh + ' · ' + d.nameEn));
+        var isUnlocked = p >= (d.unlockAt || 0);
+        if (isUnlocked) btn.classList.add('is-unlocked');
+        if (d.id === cState.activeDistrictId) {
+          btn.classList.add('is-active');
+          btn.setAttribute('aria-selected', 'true');
+          activeDist = d;
+        } else {
+          btn.setAttribute('aria-selected', 'false');
+        }
+        btn.setAttribute('data-unlock-at', String(d.unlockAt || 0));
+        btn.addEventListener('click', function () {
+          cState.activeDistrictId = d.id;
+          renderDistrictsAndChapters();
+        });
+        districtStrip.appendChild(btn);
+      });
+      renderDistrictDetail(activeDist);
+    }
+
+    var matchingChapters = chapters.filter(function (c) {
+      return cState.filterLove === 'all' || c.love === cState.filterLove ||
+        (c.lessons || []).some(function (L) { return L.love === cState.filterLove; });
+    });
+    if (!matchingChapters.length) matchingChapters = chapters;
+    if (!matchingChapters.some(function (c) { return c.id === cState.activeChapterId; })) {
+      cState.activeChapterId = matchingChapters[0].id;
+    }
+
+    if (chapterTabs) {
+      chapterTabs.textContent = '';
+      chapters.forEach(function (c) {
+        var ls = c.lessons || [];
+        var spanTxt = ls.length ? (ls[0].code + '..' + ls[ls.length - 1].code) : 'Ready';
+        var tBtn = makeEl('button', 'kc-chapter-tab');
+        tBtn.type = 'button';
+        tBtn.setAttribute('role', 'tab');
+        var unlocked = p >= (c.unlockAt || 0);
+        if (unlocked) tBtn.classList.add('is-unlocked');
+        tBtn.setAttribute('data-unlock-at', String(c.unlockAt || 0));
+        tBtn.setAttribute('aria-selected', c.id === cState.activeChapterId ? 'true' : 'false');
+        tBtn.appendChild(makeEl('strong', '', 'Ch. ' + c.order));
+        tBtn.appendChild(makeEl('span', '', spanTxt));
+        tBtn.addEventListener('click', function () {
+          cState.activeChapterId = c.id;
+          renderDistrictsAndChapters();
+        });
+        chapterTabs.appendChild(tBtn);
+      });
+    }
+
+    renderActiveChapter();
+    syncProgressUnlocks(p);
+  }
+
+  function syncProgressUnlocks(p) {
+    if (!cState.data) return;
+    var districts = cState.data.districts || [];
+    var chapters = cState.data.chapters || [];
+    var uDist = 0;
+    districts.forEach(function (d) { if (p >= (d.unlockAt || 0)) uDist += 1; });
+    var uChap = 0;
+    chapters.forEach(function (c) { if (p >= (c.unlockAt || 0)) uChap += 1; });
+
+    Array.prototype.forEach.call(document.querySelectorAll('#kc-district-strip .kc-district-chip, #kc-chapter-tabs .kc-chapter-tab'), function (el) {
+      var thr = parseFloat(el.getAttribute('data-unlock-at') || '0');
+      el.classList.toggle('is-unlocked', p >= thr);
+    });
+    if (distUnlockedLbl) distUnlockedLbl.textContent = uDist + ' / ' + districts.length + ' Districts Blooming';
+    if (chapProgLbl) chapProgLbl.textContent = uChap + ' / ' + chapters.length + ' Chapters Unlocked';
+  }
+
+  function applyCurriculumData(jsonStr) {
+    if (!jsonStr) return false;
+    try {
+      var parsed = JSON.parse(jsonStr);
+      if (!parsed || !parsed.districts || !parsed.chapters) return false;
+      var canon = JSON.stringify(parsed);
+      if (canon === cState.rawJson) return false;
+      cState.rawJson = canon;
+      cState.data = parsed;
+      renderDistrictsAndChapters();
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+      btn.setAttribute('aria-pressed', 'true');
+      cState.filterLove = btn.getAttribute('data-filter-love') || 'all';
+      renderDistrictsAndChapters();
+    });
+  });
+
+  // Render synchronously from embedded snapshot so initial scroll height is exact on frame 0
+  var fallbackEl = document.getElementById('kc-curriculum-fallback');
+  if (fallbackEl && fallbackEl.textContent) {
+    applyCurriculumData(fallbackEl.textContent.trim());
+  }
+
+  var instance = ScrollCraft.mount(document.body);
+
+  // Ensure layout re-measures once webfonts settle (worldflight.md §7b / verify.md)
+  function relayout() { dispatchEvent(new Event('resize')); }
+  addEventListener('load', relayout);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(relayout);
+  }
+
+  // Also fetch live data/curriculum.json on HTTP servers so future edits to curriculum.json
+  // take effect without modifying index.html.
+  if (location.protocol !== 'file:' && window.fetch) {
+    fetch('data/curriculum.json')
+      .then(function (r) { return r.ok ? r.text() : ''; })
+      .then(function (txt) {
+        if (txt && applyCurriculumData(txt)) relayout();
+      })
+      .catch(function () {});
+  }
+
+  // ---- 1. Signature Move Part A: Watershed Scroll Minimap, Flora Bloom & Altitude Rail ----
+  var lens = document.getElementById('kc-minimap-lens');
+  var riverTrace = document.getElementById('kc-river-trace');
+  var altReadout = document.getElementById('kc-alt-readout');
+  var strip = document.getElementById('kc-minimap-strip');
+  var floraNodes = Array.prototype.slice.call(document.querySelectorAll('.kc-flora-node'));
+  var wpBtns = Array.prototype.slice.call(document.querySelectorAll('[data-kc-jump]'));
+  var secIds = ['#act-summit', '#act-watershed', '#act-civic', '#act-canopy', '#act-celebration'];
+  var secLabels = [
+    '2,400m · Summit',
+    '1,650m · Aqueduct',
+    '1,280m · Academy',
+    '980m · Bio-Canopy',
+    '120m · Lotus Hall'
+  ];
+
+  function updateWatershedRail() {
+    var maxScroll = Math.max(document.documentElement.scrollHeight - innerHeight, 1);
+    var p = Math.min(Math.max(scrollY / maxScroll, 0), 1);
+    var envP = ScrollCraft.reduce ? 1 : p;
+    cState.scrollP = p;
+
+    document.documentElement.style.setProperty('--kc-env-bloom', envP.toFixed(3));
+    for (var f = 0; f < floraNodes.length; f++) {
+      var thr = parseFloat(floraNodes[f].getAttribute('data-flora-at') || '0');
+      floraNodes[f].classList.toggle('is-bloomed', envP >= thr);
+    }
+    syncProgressUnlocks(envP);
+
+    if (lens && strip) {
+      var maxLensY = Math.max(strip.clientHeight - lens.offsetHeight - 4, 0);
+      lens.style.transform = 'translate3d(0,' + (p * maxLensY).toFixed(1) + 'px,0)';
+    }
+    if (riverTrace) {
+      var offset = 220 - p * 220;
+      riverTrace.style.strokeDashoffset = offset.toFixed(1);
+    }
+
+    // Interpolate altitude from 2,400m down to 120m
+    var alt = Math.round(2400 - p * 2280);
+    var activeIdx = 0;
+    var midY = scrollY + innerHeight * 0.45;
+    for (var i = 0; i < secIds.length; i++) {
+      var el = document.querySelector(secIds[i]);
+      if (el && midY >= el.offsetTop) activeIdx = i;
+    }
+    if (altReadout) {
+      altReadout.textContent = alt.toLocaleString() + 'm';
+      altReadout.title = alt.toLocaleString() + 'm · ' + (secLabels[activeIdx].split('· ')[1] || '');
+    }
+    for (var j = 0; j < wpBtns.length; j++) {
+      wpBtns[j].setAttribute('aria-current', j === activeIdx ? 'true' : 'false');
+    }
+  }
+
+  addEventListener('scroll', updateWatershedRail, { passive: true });
+  updateWatershedRail();
+
+  wpBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var target = document.querySelector(btn.getAttribute('data-kc-jump'));
+      if (target) target.scrollIntoView({ behavior: ScrollCraft.reduce ? 'instant' : 'smooth' });
+    });
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-kc-scroll]'), function (a) {
+    a.addEventListener('click', function (e) {
+      var target = document.querySelector(a.getAttribute('data-kc-scroll'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: ScrollCraft.reduce ? 'instant' : 'smooth' });
+      }
+    });
+  });
+
+  if (strip) {
+    strip.addEventListener('click', function (e) {
+      var rect = strip.getBoundingClientRect();
+      var frac = Math.min(Math.max((e.clientY - rect.top) / Math.max(rect.height, 1), 0), 1);
+      var maxScroll = Math.max(document.documentElement.scrollHeight - innerHeight, 1);
+      scrollTo({ top: frac * maxScroll, behavior: ScrollCraft.reduce ? 'instant' : 'smooth' });
+    });
+  }
+
+  // ---- 2. Signature Move Part B: Three-Loves Bio-Canopy Attunement & Lantern Seal ----
+  var state = {
+    id: 'self',
+    title: '爱自己 · Love Yourself',
+    quest: 'Python: while Habit Loop | Habit: Positive Thinking & Discipline',
+    color: '#52E5C7',
+    vow: 'I will practice steady good habits and greet challenges with patience.',
+    lanternsLit: 1
+  };
+
+  var loveBtns = Array.prototype.slice.call(document.querySelectorAll('.kc-love-btn'));
+  var questLine = document.getElementById('kc-quest-line');
+  var vowInput = document.getElementById('kc-vow-input');
+  var sealHeading = document.getElementById('kc-seal-heading');
+  var sealQuest = document.getElementById('kc-seal-quest');
+  var sealVow = document.getElementById('kc-seal-vow');
+  var sealStatus = document.getElementById('kc-seal-status');
+
+  function syncVowState() {
+    document.documentElement.style.setProperty('--kc-vow-color', state.color);
+    if (questLine) questLine.textContent = state.quest;
+    if (sealHeading) sealHeading.textContent = state.title;
+    if (sealQuest) sealQuest.textContent = state.quest;
+    if (sealVow) sealVow.textContent = '"' + state.vow + '"';
+    if (sealStatus) {
+      sealStatus.textContent = '120m Estuary · ' + state.lanternsLit + ' Lantern' + (state.lanternsLit > 1 ? 's' : '') + ' Lit in Celebration Hall';
+    }
+  }
+
+  loveBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      loveBtns.forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+      btn.setAttribute('aria-pressed', 'true');
+      state.id = btn.getAttribute('data-love-id') || 'self';
+      state.color = btn.getAttribute('data-love-color') || '#52E5C7';
+      state.title = btn.getAttribute('data-love-title') || '';
+      state.quest = btn.getAttribute('data-love-quest') || '';
+      state.vow = btn.getAttribute('data-love-vow') || '';
+      if (vowInput) vowInput.value = state.vow;
+      cBurst = 1.0;
+      syncVowState();
+    });
+  });
+
+  // ---- 2b. Act 4 Live Scroll Awakening & Ascending Bioluminescent Spores ----
+  var canopyEl = document.getElementById('act-canopy');
+  var canopyCanvas = document.getElementById('kc-canopy-particles');
+  var cCtx = canopyCanvas ? canopyCanvas.getContext('2d') : null;
+  var sporeInner = document.querySelector('#kc-spore-ring .kc-ring--inner');
+  var sporeOuter = document.querySelector('#kc-spore-ring .kc-ring--outer');
+  var sporeHalo = document.querySelector('#kc-spore-ring .kc-ring--halo');
+  var canopyWake = 0;
+  var canopySurge = 0;
+  var prevCanopyP = 0;
+  var cImpulse = 0;
+  var cBurst = 0;
+  var spores = [];
+  for (var si = 0; si < 56; si++) {
+    spores.push({
+      x: 0.32 + Math.random() * 0.48,
+      y: 0.18 + Math.random() * 0.64,
+      r: 3 + Math.random() * 7.5,
+      vy: 0.00035 + Math.random() * 0.0009,
+      amp: 0.008 + Math.random() * 0.022,
+      phase: Math.random() * Math.PI * 2,
+      gold: Math.random() > 0.56
+    });
+  }
+
+  function resizeCanopyCanvas() {
+    if (!canopyCanvas) return;
+    canopyCanvas.width = canopyCanvas.clientWidth || innerWidth;
+    canopyCanvas.height = canopyCanvas.clientHeight || innerHeight;
+  }
+  addEventListener('resize', resizeCanopyCanvas, { passive: true });
+  resizeCanopyCanvas();
+
+  function smoothRamp(e0, e1, x) {
+    var t = Math.min(Math.max((x - e0) / Math.max(e1 - e0, 0.001), 0), 1);
+    return t * t * (3 - 2 * t);
+  }
+
+  function syncCanopyWake() {
+    if (!canopyEl) return;
+    var pStr = canopyEl.style.getPropertyValue('--sc-p');
+    var p = pStr ? parseFloat(pStr) : 0;
+    if (isNaN(p)) p = 0;
+    var wake = ScrollCraft.reduce ? 1 : smoothRamp(0.32, 0.88, p);
+    var surge = ScrollCraft.reduce ? 1 : smoothRamp(0.58, 0.94, p);
+    var scrimOp = p <= 0.715 ? 1 : Math.max(0.14, 1 - ((p - 0.715) / 0.115) * 0.86);
+
+    cImpulse = Math.min(1.6, cImpulse + Math.abs(p - prevCanopyP) * 9.5);
+    prevCanopyP = p;
+    canopyWake = wake;
+    canopySurge = surge;
+
+    canopyEl.style.setProperty('--kc-canopy-wake', wake.toFixed(4));
+    canopyEl.style.setProperty('--kc-canopy-scrim-op', scrimOp.toFixed(3));
+
+    if (!ScrollCraft.reduce) {
+      if (sporeInner) sporeInner.style.transform = 'rotate(' + ((p * 110) % 360).toFixed(1) + 'deg) scale(' + (0.94 + surge * 0.14).toFixed(3) + ')';
+      if (sporeOuter) sporeOuter.style.transform = 'rotate(' + (-(p * 165) % 360).toFixed(1) + 'deg) scale(' + (0.96 + surge * 0.18).toFixed(3) + ')';
+      if (sporeHalo) sporeHalo.style.transform = 'rotate(' + ((p * 75) % 360).toFixed(1) + 'deg) scale(' + (0.92 + surge * 0.24).toFixed(3) + ')';
+    }
+  }
+  addEventListener('scroll', syncCanopyWake, { passive: true });
+  syncCanopyWake();
+
+  function drawCanopySpores(now) {
+    if (!cCtx || !canopyCanvas) return;
+    syncCanopyWake();
+    var rect = canopyEl ? canopyEl.getBoundingClientRect() : null;
+    var inView = !rect || (rect.bottom > -200 && rect.top < innerHeight + 200);
+    if (inView) {
+      var w = canopyCanvas.width, h = canopyCanvas.height;
+      cCtx.clearRect(0, 0, w, h);
+      var intensity = 0.24 + canopyWake * 0.72 + canopySurge * 0.65 + cBurst * 0.75;
+      var speedMul = 1 + canopySurge * 1.45 + cImpulse * 1.8 + cBurst * 2.2;
+      for (var i = 0; i < spores.length; i++) {
+        var sp = spores[i];
+        if (!ScrollCraft.reduce) {
+          sp.y -= sp.vy * speedMul;
+          if (sp.y < 0.08) sp.y = 0.76;
+        }
+        var sx = (sp.x + sp.amp * Math.sin((now || 0) * 0.0014 + sp.phase)) * w;
+        var sy = sp.y * h;
+        var rad = sp.r * (0.85 + canopySurge * 0.65 + cBurst * 0.5) * 2.4;
+        var col = sp.gold ? '#F5C76A' : state.color;
+        var g = cCtx.createRadialGradient(sx, sy, 0.5, sx, sy, rad);
+        g.addColorStop(0, 'rgba(255, 252, 236, ' + Math.min(0.95, 0.45 * intensity).toFixed(2) + ')');
+        g.addColorStop(0.35, col);
+        g.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        cCtx.save();
+        cCtx.globalAlpha = Math.min(0.92, 0.34 * intensity);
+        cCtx.fillStyle = g;
+        cCtx.beginPath();
+        cCtx.arc(sx, sy, rad, 0, Math.PI * 2);
+        cCtx.fill();
+        cCtx.restore();
+      }
+      cImpulse *= 0.92;
+      cBurst *= 0.94;
+    }
+    if (!ScrollCraft.reduce) requestAnimationFrame(drawCanopySpores);
+  }
+  requestAnimationFrame(drawCanopySpores);
+
+  if (vowInput) {
+    vowInput.addEventListener('input', function () {
+      state.vow = vowInput.value.trim() || 'Good habits matter more than good fortune.';
+      syncVowState();
+    });
+  }
+
+  // ---- 3. Act 5 Interactive Floating Lanterns & Pilgrim Scroll Seal Export ----
+  var lanternCanvas = document.getElementById('kc-lantern-canvas');
+  var lCtx = lanternCanvas ? lanternCanvas.getContext('2d') : null;
+  var lanterns = [
+    { x: 0.28, y: 0.62, r: 11, vy: 0.00045, phase: 0.4, color: '#EAB85C' },
+    { x: 0.52, y: 0.48, r: 13, vy: 0.00055, phase: 1.9, color: '#52E5C7' },
+    { x: 0.74, y: 0.58, r: 10, vy: 0.00040, phase: 3.1, color: '#EAB85C' }
+  ];
+
+  function resizeLanternCanvas() {
+    if (!lanternCanvas) return;
+    lanternCanvas.width = lanternCanvas.clientWidth || innerWidth;
+    lanternCanvas.height = lanternCanvas.clientHeight || innerHeight;
+  }
+  addEventListener('resize', resizeLanternCanvas, { passive: true });
+  resizeLanternCanvas();
+
+  function drawLanterns(now) {
+    if (!lCtx || !lanternCanvas) return;
+    var w = lanternCanvas.width, h = lanternCanvas.height;
+    lCtx.clearRect(0, 0, w, h);
+    for (var i = 0; i < lanterns.length; i++) {
+      var L = lanterns[i];
+      if (!ScrollCraft.reduce) {
+        L.y -= L.vy;
+        if (L.y < 0.08) L.y = 0.82;
+      }
+      var lx = (L.x + 0.012 * Math.sin((now || 0) * 0.0012 + L.phase)) * w;
+      var ly = L.y * h;
+      var grad = lCtx.createRadialGradient(lx, ly, 1, lx, ly, L.r * 3.2);
+      grad.addColorStop(0, '#FFF8E7');
+      grad.addColorStop(0.35, L.color);
+      grad.addColorStop(1, 'rgba(0,0,0,0)');
+      lCtx.fillStyle = grad;
+      lCtx.beginPath();
+      lCtx.arc(lx, ly, L.r * 3.2, 0, Math.PI * 2);
+      lCtx.fill();
+    }
+    if (!ScrollCraft.reduce) requestAnimationFrame(drawLanterns);
+  }
+  requestAnimationFrame(drawLanterns);
+
+  var releaseBtn = document.getElementById('kc-release-lantern-btn');
+  if (releaseBtn) {
+    releaseBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      state.lanternsLit += 1;
+      lanterns.push({
+        x: 0.35 + Math.random() * 0.35,
+        y: 0.76,
+        r: 12 + Math.random() * 4,
+        vy: 0.00065,
+        phase: Math.random() * 6,
+        color: state.color
+      });
+      syncVowState();
+      if (ScrollCraft.reduce) drawLanterns(performance.now());
+    });
+  }
+
+  // Generate & Download a real PNG Pilgrim Scroll Seal from HTML5 Canvas
+  var downloadBtn = document.getElementById('kc-download-seal-btn');
+  if (downloadBtn) {
+    downloadBtn.addEventListener('click', function () {
+      var c = document.createElement('canvas');
+      c.width = 960;
+      c.height = 540;
+      var g = c.getContext('2d');
+
+      // Deep pine parchment card background
+      g.fillStyle = '#0E1714';
+      g.fillRect(0, 0, 960, 540);
+      g.strokeStyle = state.color;
+      g.lineWidth = 3;
+      g.strokeRect(24, 24, 912, 492);
+      g.strokeStyle = 'rgba(247, 241, 227, 0.22)';
+      g.lineWidth = 1;
+      g.strokeRect(36, 36, 888, 468);
+
+      // Vermilion seal stamp
+      g.fillStyle = '#9E2B25';
+      g.fillRect(64, 64, 68, 68);
+      g.fillStyle = '#FBF4E6';
+      g.font = 'bold 36px Georgia, serif';
+      g.fillText('善', 80, 111);
+
+      // Header, Quest & Vow
+      g.fillStyle = '#F7F1E3';
+      g.font = '600 30px Georgia, serif';
+      g.fillText('善心之城 · KINDNESS CITY CITIZEN SEAL', 154, 92);
+      g.fillStyle = state.color;
+      g.font = '600 20px sans-serif';
+      g.fillText(state.title + ' · 命好不如习惯好', 154, 126);
+
+      g.fillStyle = '#F7F1E3';
+      g.font = 'italic 26px Georgia, serif';
+      g.fillText('"' + state.vow.slice(0, 62) + '"', 64, 240);
+
+      g.fillStyle = state.color;
+      g.font = '18px monospace';
+      g.fillText(state.quest, 64, 308);
+
+      g.fillStyle = '#C6D3C4';
+      g.font = '17px monospace';
+      g.fillText('Motto: Good habits matter more than good fortune · Technology is only an enabler', 64, 386);
+      g.fillText('LANTERNS LIT: ' + state.lanternsLit + '   |   ADVENTURE SEAL: KC-2026-' + state.id.toUpperCase(), 64, 424);
+
+      var link = document.createElement('a');
+      link.download = 'kindness-city-scroll-seal-' + state.id + '.png';
+      link.href = c.toDataURL('image/png');
+      link.click();
+    });
+  }
+
+  // ---- 4. Full Master Scroll Atlas Modal + Keyboard Focus Management ----
+  var atlasModal = document.getElementById('atlas-modal');
+  var openAtlasBtn = document.getElementById('open-atlas-btn');
+  var closeAtlasBtn = document.getElementById('close-atlas-btn');
+  var atlasJumpBtns = Array.prototype.slice.call(document.querySelectorAll('[data-atlas-jump]'));
+
+  function setAtlasOpen(open) {
+    if (!atlasModal) return;
+    atlasModal.setAttribute('aria-hidden', open ? 'false' : 'true');
+    if (open && closeAtlasBtn) closeAtlasBtn.focus();
+    else if (!open && openAtlasBtn) openAtlasBtn.focus();
+  }
+
+  if (openAtlasBtn) openAtlasBtn.addEventListener('click', function () { setAtlasOpen(true); });
+  if (closeAtlasBtn) closeAtlasBtn.addEventListener('click', function () { setAtlasOpen(false); });
+  addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && atlasModal && atlasModal.getAttribute('aria-hidden') === 'false') {
+      setAtlasOpen(false);
+    }
+  });
+  atlasJumpBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      setAtlasOpen(false);
+      var target = document.querySelector(btn.getAttribute('data-atlas-jump'));
+      if (target) target.scrollIntoView({ behavior: ScrollCraft.reduce ? 'instant' : 'smooth' });
+    });
+  });
+
+  // ---- 5. Pinned Act Keyboard Focus Handler (verify.md requirement) ----
+  // When a focusable control inside a pinned act receives focus while its cue is faded,
+  // scroll the act to the progress where its cue is open.
+  addEventListener('focusin', function (e) {
+    var el = e.target;
+    if (!el || !el.closest) return;
+    var act = el.closest('[data-sc-act="scrub"], [data-sc-act="pin"]');
+    var cue = el.closest('[data-sc-cue]');
+    if (!act || !cue) return;
+    var op = parseFloat(getComputedStyle(cue).opacity || '1');
+    if (op >= 0.85) return;
+    var spec = (cue.getAttribute('data-sc-cue') || '').trim().split(/\s+/).map(parseFloat);
+    var from = isNaN(spec[0]) ? 0 : spec[0];
+    var to = (spec.length > 1 && !isNaN(spec[1])) ? spec[1] : 1;
+    var midP = (from + to) * 0.5;
+    var rect = act.getBoundingClientRect();
+    var actTop = rect.top + scrollY;
+    var travel = Math.max(act.offsetHeight - innerHeight, 1);
+    scrollTo({ top: Math.round(actTop + travel * midP), behavior: 'instant' });
+  });
+
+})();
+</script>
+</body>
+</html>
